@@ -1,0 +1,6 @@
+AUTHOR = 'Ben Gras'
+OUTPUT_PATH = '/usr/local/www/data/vhosts/www.shrike-systems.com'
+PATH = 'content'
+SITEURL = 'http://www.shrike-systems.com'
+SITENAME = 'Shrike Systems'
+TIMEZONE = 'CET'
