@@ -6,24 +6,24 @@ Summary: I tried the Minix build procedure in many environments with relatively 
 
 Software that always works is pretty hard to achieve. It depends
 on its own state and the state of its environment. Its own state
-is hard enough to manage, but its environment is even outside of
-its control. If I use something that is highly dependent on its
-environment, and it works without fiddling, I'm always surprised
-and impressed and pleased. It's such a nice experience.  Example:
-[my SONOS players](http://www.sonos.com/). Phones nowadays (I use
-Androids) do a really good job of it too. Apple also seems to invest
-a lot into the 'just works' experience and it's impressive how often
-it does, in fact, just work.
+is hard enough to manage as it is. That of the environment, however,
+is outside of its control alltogether. Whenever I use something that is
+highly dependent on its environment, and it works without fiddling,
+I'm always surprised and impressed and pleased. It's such a nice
+experience.  Example: [my SONOS players](http://www.sonos.com/).
+Phones nowadays (I use Androids) do a really good job of it too.
+Apple also seems to invest a lot into the 'just works' experience
+and it's impressive how often it does, in fact, just work.
 
 I've come to appreciate both the value of things that just work,
 and the cost of getting things to just work, a lot, because I'm on
-both sides of the fence of - I co-provide a product that should
-work; and I'm a consumer of many products that should work. And
-it's easy to underestimate how much more complex something has to
-be when it has to work for one person (you), more than one person
-(you're not there), or everyone (the environment might be anything).
+both sides of the fence. I co-provide a product that should work;
+and I'm a consumer of many products that should work.  It's easy
+to underestimate how much more complex something has to be if it
+has to work for everyone, in any environment, compared to just you. 
+You got it working in your environment, after all.
 I'd like it if MINIX never had any build problems.  (Let's not talk
-about run problems for now - that's much harder to verify.) But
+about run problems for now - that's much harder to measure.) But
 we're a pretty small team so can't go down the [long
 tail](http://en.wikipedia.org/wiki/Long_tail) of reasons why builds
 might break in many different environments.
@@ -50,11 +50,11 @@ I should add that, powerful as the system is, it is not magical.
 The system provides reproducibility of builds, independent of the
 host environment, when used properly. This doesn't mean there are
 no problems, but that the state is manageable, and only minimally
-dependent on the outside environment.  The power of the system
-extends no further than all problems are simply, in the best case,
-solved just once. Once solved by the first person, someone else
-shouldn't bump into it again. Given how diverse environments can
-be, that does make it *quite magical* as far as I'm concerned.
+dependent on the host environment.  In the best case, all problems
+are solved just once. Once it is solved by the first person, someone
+else shouldn't bump into it again. Even if the hosting environments
+are different. Given how diverse such environments can be, that
+does make it *quite magical* as far as I'm concerned.
 
 The buildsystem has worked really well for Minix as well. Just to
 see how well it does on many different Linux distro's, I tried
