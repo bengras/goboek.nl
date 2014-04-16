@@ -20,7 +20,7 @@ and the cost of getting things to just work, a lot, because I'm on
 both sides of the fence. I co-provide a product that should work;
 and I'm a consumer of many products that should work.  It's easy
 to underestimate how much more complex something has to be if it
-has to work for everyone, in any environment, compared to just you. 
+has to work for everyone, in any environment, compared to just for you. 
 You got it working in your environment, after all.
 I'd like it if MINIX never had any build problems.  (Let's not talk
 about run problems for now - that's much harder to measure.) But
@@ -47,9 +47,9 @@ break the whole build - often a hard-to-diagnose problem given the
 on-the-surface symptoms.
 
 I should add that, powerful as the system is, it is not magical.
-The system provides reproducibility of builds, independent of the
-host environment, when used properly. This doesn't mean there are
-no problems, but that the state is manageable, and only minimally
+When used properly, the system provides reproducibility of builds
+independent of the host environment.  This doesn't mean there are
+no problems. It means the state is manageable and only minimally
 dependent on the host environment.  In the best case, all problems
 are solved just once. Once it is solved by the first person, someone
 else shouldn't bump into it again. Even if the hosting environments
