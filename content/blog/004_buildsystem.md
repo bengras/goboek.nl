@@ -29,7 +29,7 @@ tail](http://en.wikipedia.org/wiki/Long_tail) of reasons why builds
 might break in many different environments.
 
 MINIX can be cross-built for x86 or ARM and so relies on its host
-environment to a degree. This can't be controlled so to have a
+environment to a degree. This can't be controlled, so to have a
 robust build system that not only works but also doesn't break
 easily is pretty hard. 
 
