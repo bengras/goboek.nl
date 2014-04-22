@@ -7,10 +7,13 @@ Summary: I followed a class on the RTEMS OS and wrote a BSP for the Beagles for 
 [As mentioned](|filename|002_rtems.md), I am interested in
 diversifying my OS knowledge further.
 [Joel](http://rtemsramblings.blogspot.nl/) mentioned he was
-teaching an [RTEMS](http://www.rtems.org) [Open Class](http://www.rtems.org)
-in Munich so that was a perfect opportunity to take part in.
+teaching an [RTEMS](http://www.rtems.org)
+[Open Class](http://rtems.org/wiki/index.php/RTEMS_Training)
+in Munich last month so that was a perfect opportunity to take part.
 
-It was a great experience. For many reasons!
+So I booked a flight, and AirBNB room, and there I was! Coffee,
+pretzels (I get it now!), class, beer, food, hacking - heavenly
+really.  It was a great experience. For many reasons!
 
 Reasons the class was great, one: I learned a lot about RTEMS
 -------------------------------------------------------------
@@ -30,7 +33,9 @@ subjects, to life and happiness and such things in general.
 
 ![Having a beer with Joel]({filename}/images/socialize.jpg)
 
-We all know socializing is simply fancier-sounding code for drinking
+Left: me. Right: Joel.
+
+We all know socializing is simply code for drinking
 beer together, no?
 
 Three: the Beagle BSP
@@ -45,9 +50,21 @@ participants, so that raised the pressure to succeed within the class
 timeframe significantly!
 
 I hacked on it as much as I could between classes and socializing and
-"on the last day" I got it working.
+"on the last day" I got it working. I really enjoyed Joel demonstrating
+it to the rest of the class! We hooked up my laptop to the projector
+and went to town.
 
 ![Joel demonstrating RTEMS on my beaglebone black]({filename}/images/demo.jpg)
+
+Pictured: Joel demonstrating RTEMS running on the Beaglebone Black that
+I brought with me.
+
+And, also on the last day:
+
+![Joel demonstrating RTEMS on my beaglebone black]({filename}/images/cert.jpg)
+
+I got a certificate! It really did feel like going back to school and it
+was quite a nice experience.
 
 Where to go
 -----------
@@ -60,20 +77,30 @@ for that page.
 
 [Chris](https://github.com/kiwichris) started the wonderfully-named section 
 "Ben and Chris's Big Beagleboard Adventure" - I couldn't have phrased it
-better, that's really what it feels like!
+better, that's really what it feels like! Also sounds a bit like "Bill and Ted"
+and I hope Chris meant it that way too.
 
 The work-in-progress code is at
 [my github RTEMS fork](https://github.com/bengras/rtems/tree/beaglebone-wip).
 
-What next
----------
+What next, and: foreshadowing
+-----------------------------
 
 I'm really delighted with how far the BSP has come, as it's a first
 for me to do something with RTEMS, and indeed get any new OS working
-almost-from-scratch on a new piece of hardware. I have spent a lot
-of time since then running the full test suite, cleaning it up
-(mostly: minimizing), and working with
+almost-from-scratch on a new piece of hardware. Well.. That's an
+exaggeration, as a lot of ARM support was already there. But still,
+filling in a few more basics can make it feel like it's from-scratch!
+
+The Beagles are such nice products that it's a real PR opportunity
+for RTEMS too I believe, and I'm thrilled to be able to contribute
+that to RTEMS.
+
+I have spent a lot of time since then running the full test suite,
+and cleaning up the BSP - mostly by minimizing it. Part of the
+effort to merge this BSP with mainline is that I am working with
 [Chris](https://github.com/kiwichris) to get the RTEMS executable
-booting from scratch using JTAG. But that is a topic of another,
-similarly exciting, post.
+running from scratch using
+[JTAG](http://en.wikipedia.org/wiki/Joint_Test_Action_Group).  But
+that is a topic of another, similarly exciting, post.
 
