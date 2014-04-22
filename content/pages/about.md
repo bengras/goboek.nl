@@ -4,7 +4,7 @@ Summary: Site info
 
 This is the personal / professional site of Ben Gras. Personal
 because I've started to collect some stuff here that I want to
-publish that happens outside my work; and professional because it
+publish that happens outside my day job; and professional because it
 has the side effect of showing myself to prospective clients and
 employers. So.. part Facebook, part LinkedIn.
 
