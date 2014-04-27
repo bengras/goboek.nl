@@ -14,3 +14,7 @@ Some links to other resources of mine:
 [LinkedIn](https://www.linkedin.com/in/bengras)
 [Twitter](https://twitter.com/bjg)
 [Ohloh](https://www.ohloh.net/accounts/beng)
+
+A pic:
+
+![My profile pic]({filename}/images/profile.jpg)
