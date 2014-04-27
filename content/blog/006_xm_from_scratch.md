@@ -5,7 +5,7 @@ Tags: beagle,jtag,rtems
 Summary: Executing code on a BeagleBoard XM without any bootcode.
 
 Below is a story of what I've learned about what it takes to
-boot a Beagleboard.
+boot a [Beagleboard](http://beagleboard.org/Products/BeagleBoard-xM).
 
 ## BeagleBoard XM on reset - a barren wasteland
 
