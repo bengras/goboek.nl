@@ -1,8 +1,11 @@
-Title: MINIX builds on 22 Linux distro's thanks to NetBSD's buildsystem
+Title: Minix builds on 22 Linux distro's thanks to NetBSD's buildsystem
 Date: 2014-04-15 14:19
 Category: Blog
 Tags: minix,justworks
 Summary: I tried the Minix build procedure in many environments with relatively minimal effort using OpenSuse's build farm. Minix builds from scratch on many different OSes and Linux distributions. This is a testament to the power of its buildsystem, taken from NetBSD.
+
+
+Why read on? To learn how [Minix could effortlessly crossbuild from all these environments](https://build.opensuse.org/package/show/home:beng-nl/Minix3).
 
 Software that always works is pretty hard to achieve. It depends
 on its own state and the state of its environment. Its own state
@@ -22,13 +25,13 @@ and I'm a consumer of many products that should work.  It's easy
 to underestimate how much more complex something has to be if it
 has to work for everyone, in any environment, compared to just for you. 
 You got it working in your environment, after all.
-I'd like it if MINIX never had any build problems.  (Let's not talk
+I'd like it if Minix never had any build problems.  (Let's not talk
 about run problems for now - that's much harder to measure.) But
 we're a pretty small team so can't go down the [long
 tail](http://en.wikipedia.org/wiki/Long_tail) of reasons why builds
 might break in many different environments.
 
-MINIX can be cross-built for x86 or ARM and so relies on its host
+Minix can be cross-built for x86 or ARM and so relies on its host
 environment to a degree. This can't be controlled, so to have a
 robust build system that not only works but also doesn't break
 easily is pretty hard. 
@@ -64,5 +67,5 @@ mostly of package parameters like dependencies to get the tools
 bootstrap going, but then 22 distro's built Minix without changing
 the build system itself; [here are the
 results](https://build.opensuse.org/package/show/home:beng-nl/Minix3). Well
-done NetBSD, and the MINIX guys that work hard to cleanly integrate
+done NetBSD, and the Minix guys that work hard to cleanly integrate
 it.
