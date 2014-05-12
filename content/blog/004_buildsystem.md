@@ -1,4 +1,4 @@
-Title: Minix builds on 22 Linux distro's thanks to NetBSD's buildsystem
+Title: Minix builds on 22 Linux distros thanks to NetBSD's buildsystem
 Date: 2014-04-15 14:19
 Category: Blog
 Tags: minix,justworks
@@ -60,11 +60,11 @@ are different. Given how diverse such environments can be, that
 does make it *quite magical* as far as I'm concerned.
 
 The buildsystem has worked really well for Minix as well. Just to
-see how well it does on many different Linux distro's, I tried
+see how well it does on many different Linux distros, I tried
 crosscompiling x86 Minix on the [OpenSUSE's Build
 Service](https://build.opensuse.org/).  It did take some tweaking,
 mostly of package parameters like dependencies to get the tools
-bootstrap going, but then 22 distro's built Minix without changing
+bootstrap going, but then 22 distros built Minix without changing
 the build system itself; [here are the
 results](https://build.opensuse.org/package/show/home:beng-nl/Minix3). Well
 done NetBSD, and the Minix guys that work hard to cleanly integrate
