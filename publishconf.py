@@ -1,10 +1,11 @@
 AUTHOR = 'Ben Gras'
-OUTPUT_PATH = '/usr/local/www/data/vhosts/test.shrike-systems.com'
+OUTPUT_PATH = '/usr/local/www/data/vhosts/www.shrike-systems.com'
 PATH = 'content'
-SITEURL = 'http://test.shrike-systems.com'
+SITEURL = 'http://www.shrike-systems.com'
 SITENAME = 'Shrike Systems'
 TIMEZONE = 'CET'
 THEME = '../pelican-themes/zurb-F5-basic'
+GOOGLE_ANALYTICS = 'UA-50092958-1'
 DELETE_OUTPUT_DIRECTORY = True
 FEED_ATOM = 'atom.xml'
 FEED_RSS = 'rss.xml'
@@ -13,3 +14,4 @@ TWITTER_USERNAME = 'bjg'
 PLUGINS = [
     'pelican_youtube',
 ]
+
