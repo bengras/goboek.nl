@@ -62,3 +62,39 @@ width="640" height="385"
 src="http://www.youtube.com/embed/7Jh9PUSBPAY" allowfullscreen frameborder="0" cc_load_policy="1">
 </iframe>
 
+## PS About The Subtitles
+
+I transcribed all of the subtitles and used the YouTube interface
+to automatically do the timing for me. This was hit/miss. The first
+version matched the first 70% of the video perfectly, but always
+seemed to lose sync completely near the end - same for when the
+first 50% or all of the video transcription was complete. The next
+version had different audio and the sync was one big mess.
+
+So I used the first version, adjusted the timing for the new video
+(the SRT file with timing info was available for download from
+YouTube), and then was stuck with how to correct the timing for the
+remaining 30 minutes or so. I call it 'stuck' because I found the
+youtube interface for correcting these timings far too clumsy to
+use in this manner. All I needed was displaying the subtitle, and
+me correcting the timing by hitting a key every time I wanted a
+transition to the next! Is that so hard? I would be done in the 30
+minutes remaining of the video. It can't be done faster.
+No of course it's not so hard, but
+that doesn't mean existing tools have an obligation to anticipate
+your use case, however easy it may be. I looked around but found no
+subtitle tool, site or software that had implemented my scenario.
+
+Unfortunately the shortest path from my problem to the solution I
+imagined was using Perl. I wrote a script to read the SRT file up
+until the timing was wrong, copying over the entries to the output
+file directly. From then I made it display each subtitle,
+and wait for a keystroke for each transition; and rewrite
+the SRT to use the new timings. Somewhat to my surprise, in actual
+operation, this went perfectly the first time, start to finish.
+Except for falling asleep once or twice while watching the video
+again, it was pretty late. I'm not especially proud of the script
+but I am a bit proud of solving the problem in a completely optimal way in terms of
+execution time, with
+fairly low effort in terms of programming time.
+
