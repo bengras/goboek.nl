@@ -9,6 +9,7 @@ DELETE_OUTPUT_DIRECTORY = True
 FEED_ATOM = 'atom.xml'
 FEED_RSS = 'rss.xml'
 TWITTER_USERNAME = 'bjg'
+FLATTR_USER = 'ben.gras'
 
 PLUGINS = [
     'pelican_youtube',
