@@ -1,5 +1,5 @@
 Title: Beagleboard xM, Beaglebone black and everything else RTEMS on the Beagles
-Date: 2014-05-23 15:46
+Date: 2014-07-22 09:56
 Category: Blog
 Tags: beagle,beaglebone,beagleboard,rtems
 Summary: How to get everything RTEMS running on everything Beagle from scratch.
