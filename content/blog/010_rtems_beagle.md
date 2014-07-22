@@ -73,6 +73,10 @@ Then build the beagle bset. We tell RSB to install the binaries under the $HOME/
 
 Ok, great. This will have built the toolchain with the right target, qemu, uboot, and some supporting utilities needed to prepare the SD card. They are all under $HOME/development/rtems/4.11. We will use these soon enough.
 
+I've noticed I have to install python2.7-dev on ubuntu systems to get gdb to build.
+
+	% apt-get install python2.7-dev
+
 Next: build RTEMS, Beagle BSPs and test suite
 ---------------------------------------------
 Time for the main act - the RTEMS code itself. We enable the Beagle BSP, build all the RTEMS code. 
