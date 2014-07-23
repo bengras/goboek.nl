@@ -305,6 +305,9 @@ Gee don't put me on the spot!
 I want to diagnose the failure reasons of the tests in the emulator and on
 hardware (different).
 
+Some form of continuous integration to keep verifying the BSP with future
+commits would be a good idea too!
+
 Also I want to get JTAG working on the beaglebone white, which would be an
 extremely powerful setup - console, power and jtag all over one USB cable?
 God have mercy.
