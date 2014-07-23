@@ -181,7 +181,62 @@ The script should give you a whole bunch of output, ending in:
 
         Result is in bone_hello.exe-sdcard.img.
 
-There you go. dd that to an SD card and boot!
+There you go. dd that to an SD card .. (/dev/mmcblk0 in my case. careful!)
+
+	# dd if=bone_hello.exe-sdcard.img of=/dev/mmcblk0 bs=4096
+
+.. and boot!
+
+		# picocom -b 115200 /dev/ttyUSB0
+		U-Boot SPL 2014.04-00015-gb4422bd (Apr 22 2014 - 13:24:29)
+		reading args
+		spl_load_image_fat_os: error reading image args, err - -1
+		reading u-boot.img
+		reading u-boot.img
+		
+		
+		U-Boot 2014.04-00015-gb4422bd (Apr 22 2014 - 13:24:29)
+		
+		I2C:   ready
+		DRAM:  512 MiB
+		NAND:  0 MiB
+		MMC:   OMAP SD/MMC: 0, OMAP SD/MMC: 1
+		*** Warning - readenv() failed, using default environment
+		
+		Net:   <ethaddr> not set. Validating first E-fuse MAC
+		cpsw, usb_ether
+		Hit any key to stop autoboot:  0 
+		gpio: pin 53 (gpio 53) value is 1
+		mmc0 is current device
+		gpio: pin 54 (gpio 54) value is 1
+		SD/MMC found on device 0
+		reading uEnv.txt
+		99 bytes read in 5 ms (18.6 KiB/s)
+		gpio: pin 55 (gpio 55) value is 1
+		Loaded environment from uEnv.txt
+		Importing environment from mmc ...
+		Checking if uenvcmd is set ...
+		gpio: pin 56 (gpio 56) value is 1
+		Running uenvcmd ...
+		reading rtems-app.img
+		58629 bytes read in 11 ms (5.1 MiB/s)
+		## Booting kernel from Legacy Image at 80800000 ...
+		   Image Name:   RTEMS
+		   Image Type:   ARM RTEMS Kernel Image (gzip compressed)
+		   Data Size:    58565 Bytes = 57.2 KiB
+		   Load Address: 80000000
+		   Entry Point:  80000000
+		   Verifying Checksum ... OK
+		   Uncompressing Kernel Image ... OK
+		## Transferring control to RTEMS (at address 80000000) ...
+		
+		RTEMS Beagleboard: am335x-based
+		
+		
+		*** BEGIN OF TEST HELLO WORLD ***
+		Hello World
+		*** END OF TEST HELLO WORLD ***
+		
 
 The script needs to know whether it's for a Beagleboard xM or one of the
 Beaglebones. This is to know which uboot to use. It will detect this from the
@@ -202,7 +257,7 @@ Try it:
         # mkdir bbxm-gdb
         # cd bbxm-gdb 
         # cp ../gdbinit.bbxm .gdbinit
-        # arm-rtems4.11-gdb /home/minix/development/rtems/b-beagle/arm-rtems4.11/c/beagleboardxm/testsuites/samples/ticker/ticker.exe
+        # arm-rtems4.11-gdb $HOME/development/rtems/b-beagle/arm-rtems4.11/c/beagleboardxm/testsuites/samples/ticker/ticker.exe
         GNU gdb (GDB) 7.7
         -snip-
         Breakpoint 10 at 0x80015dcc: file ../../../../../../rtems-src/c/src/../../cpukit/libcsupport/src/newlibc_exit.c, line 37.
