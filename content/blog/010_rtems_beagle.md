@@ -7,7 +7,9 @@ Summary: How to get everything RTEMS running on everything Beagle from scratch.
 Everything about RTEMS on Beagleboards & Beaglebones
 ====================================================
 
-![Beagleboard]({filename}/images/beagle_logo_hdr.gif)
+![Beagleboard]({filename}/images/beagle.jpg)
+
+Welcome to the 10th post!
 
 Purpose of this post
 --------------------
@@ -23,6 +25,15 @@ Introduction
 As faithful readers know, I am working on RTEMS support for the Beagleboard, Beaglebone and Beaglebone Black. There has been quite some interest in Beagle support for RTEMS on the RTEMS mailing lists recently, quite suddenly I thought. That made me decide to offer the current state of the BSP for merging with RTEMS mainline. The alternative is to keep polishing it and improving support out-of-tree. But that is better done from RTEMS mainline now.
 
 So as mentioned, the purpose of this post is to start from nothing RTEMS-specific and build everything needed to run an RTEMS app on your Beagle target. As you'll see it isn't labour-intensive.
+
+Acknowledgements
+----------------
+Chris Johns helped guide the polishing of the BSP a lot when I first came
+up with it (he didn't call it Ben and Chris's Big Beagleboard Adventure for
+nothing!). Brandon Matthews asked a question about running RTEMS on the
+Beaglebone once and has since been very patient and helpful in collaborating
+to move the process along. Claas Ziemke
+started the, as-yet unmerged, original Beagleboard BSP for GSoC in 2012.
 
 About Where the Code Is
 -----------------------
@@ -49,6 +60,10 @@ This is combined in the bset 'beagle' and is all built with the following simple
 
 The RSB has bsets you can choose from which are a set of tools with all needed dependencies. There is a toolchain bset for instance. I added a beagle bset which contains the toolchain and all other utilities and software we need.
 
+Check you have the dependencies the RSB itself depends on. Go to the
+[RTEMS Source Builder Host Setups](http://www.rtems.org/ftp/pub/rtems/people/chrisj/source-builder/source-builder.html#_host_setups) section and look for your OS.
+I've tested this on Ubuntu and FreeBSD and it doesn't quite go out-of-the-box otherwise.
+
 Now fetch the RSB.
 
         % git clone -b beagle https://github.com/bengras/rtems-source-builder.git
@@ -69,13 +84,9 @@ First verify the basic dependencies are on the system.
 Then build the beagle bset. We tell RSB to install the binaries under the $HOME/development/rtems/4.11 prefix.
 
         % cd rtems-source-builder/rtems
-        % ../source-builder/sb-set-builder --log=beagle.txt --prefix=$HOME/development/rtems/4.11 --with-rtems devel/beagle.bset
+        % ../source-builder/sb-set-builder --log=beagle.txt --prefix=$HOME/development/rtems/4.11 devel/beagle.bset
 
 Ok, great. This will have built the toolchain with the right target, qemu, uboot, and some supporting utilities needed to prepare the SD card. They are all under $HOME/development/rtems/4.11. We will use these soon enough.
-
-I've noticed I have to install python2.7-dev on ubuntu systems to get gdb to build.
-
-	% apt-get install python2.7-dev
 
 Next: build RTEMS, Beagle BSPs and test suite
 ---------------------------------------------
@@ -112,7 +123,7 @@ Configure everything, selecting the beagleboneblack and the beagleboardxm modes.
         % CONSOLE_POLLED=1 ../rtems-src/configure --target=arm-rtems4.11 --enable-rtemsbsp="beagleboneblack beagleboardxm" --enable-tests
         % make
 
-If all went according to plan, you have a bunch of .exe files in the $HOME/development/rtems/b-beagle/arm-rtems4.11/c hierarchy. The full set, once linked with the beagleboardxm BSP, and once with the beagleboneblack BSP.
+If all went according to plan, you have a bunch of .exe files in the $HOME/development/rtems/b-beagle/arm-rtems4.11/c hierarchy. The full set twice - once linked with the beagleboardxm BSP, and once with the beagleboneblack BSP.
 
 Aside - How to run an ELF RTEMS image on a Beagle
 -------------------------------------------------
@@ -139,7 +150,7 @@ First we fetch RTEMS tools, containing the testing code:
 
 Earlier, the RTEMS source builder has fetched and built a lot of required tools to actually run a test. There is a script in the RTEMS tester tree that takes an RTEMS executable, processes it into an image that uboot will load (using objdump and mkimage), put it together with MLO and uboot on a filesystem, and write an SD card image with it.
 
-We can then simulate its execution with the Linaro fork of qemu, which emulates a beagleboard XM in software.
+We can then simulate its execution with the Linaro fork of qemu, which emulates a beagleboard xM in software.
 
 This is invoked automatically for every test executable by the RTEMS beagleboardxm_qemu tester. Here we go:
 
@@ -160,6 +171,7 @@ So there are a few tests I should still diagnose before the baseline is as clean
 
 Writing an SD card image for the Beaglebone Black
 -------------------------------------------------
+
 In the RTEMS source tree itself there is a similar script to the above that lets you write an SD card image with a specific RTEMS executable on it. Let's write one for the Beaglebone Black:
 
         % cd $HOME/development/rtems/rtems-src/c/src/lib/libbsp/arm/beagle/simscripts
@@ -170,6 +182,10 @@ The script should give you a whole bunch of output, ending in:
         Result is in bone_hello.exe-sdcard.img.
 
 There you go. dd that to an SD card and boot!
+
+The script needs to know whether it's for a Beagleboard xM or one of the
+Beaglebones. This is to know which uboot to use. It will detect this from the
+path the executable is in, so you have to specify the full path.
 
 Running with the Beagleboard xM over JTAG
 -----------------------------------------
@@ -217,14 +233,12 @@ What I've Tested
 ----------------
 I have personally tested everything in the above procedure, i.e.
 
-  1. That building all the tools and utilities from scratch work, using the RTEMS Source Builder repository.
-  1. That building the beaglebone and bbxm BSPs and linking them with all the testsuite programs works.
-  1. That the beaglexm-emulating linaro qemu executes all of those tests properly, invoked using a single command line with the scripts in the RTEMS tools repository, even though not all pass currently.
+  1. That building all the tools and utilities from scratch work, using the RTEMS Source Builder repository (Ubuntu + FreeBSD).
+  1. That building the beaglebone and bbxm BSPs and linking them with all the testsuite programs works (Ubuntu + FreeBSD).
+  1. That the beaglexm-emulating linaro qemu executes all of those tests properly, invoked using a single command line with the scripts in the RTEMS tools repository, even though not all pass currently (Ubuntu + FreeBSD).
   1. That loading & running over JTAG works, both interactively with gdb and in a batch using gdb and the test runner.
-
-I have done all of the above both on an otherwise-bare Ubuntu system and on
-a FreeBSD system.
+  1. That running RTEMS executables using u-boot on the beaglebones from sd card work; both with and without MMU enabled at RTEMS start time.
 
 Additionally, I've also tested the work by Claas Ziemke rebased on
-current rtems mainline. My changes are in a separate commit in order
+current rtems mainline builds. My changes are in a separate commit in order
 to preserve credit where it's due.
