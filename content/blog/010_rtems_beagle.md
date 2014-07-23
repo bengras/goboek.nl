@@ -297,3 +297,17 @@ I have personally tested everything in the above procedure, i.e.
 Additionally, I've also tested the work by Claas Ziemke rebased on
 current rtems mainline builds. My changes are in a separate commit in order
 to preserve credit where it's due.
+
+What's next
+-----------
+Gee don't put me on the spot!
+
+I want to diagnose the failure reasons of the tests in the emulator and on
+hardware (different).
+
+Also I want to get JTAG working on the beaglebone white, which would be an
+extremely powerful setup - console, power and jtag all over one USB cable?
+God have mercy.
+
+When I'm feeling brave I'd like to get the ethernet hardware working on the
+Beaglebones. But first things first. Let me know if you enjoy the BSP!
