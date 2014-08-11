@@ -248,7 +248,8 @@ This is a slightly more advanced use. Connect a flyswatter or flyswatter2 to a B
 
 Still from the simscripts dir, first start openocd. I have a flywatter but you can also specify a flyswatter2.cfg:
 
-        % openocd -f interface/ftdi/flyswatter.cfg -f bbxm.cfg -c'reset init'
+		% cd $HOME/development/rtems/rtems-src/c/src/lib/libbsp/arm/beagle/simscripts
+		% openocd -f interface/ftdi/flyswatter.cfg -f bbxm.cfg -c'reset init'
 
 openocd should now be talking to your bbxm and be offering a gdb interface. Using gdb we can load and run RTEMS executables.
 
