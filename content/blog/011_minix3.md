@@ -1,4 +1,4 @@
-Title: Minix 3.3.0 is released and visiting EuroBSDcon 2014
+Title: Minix 3.3.0 is released, is unforking, and is visiting EuroBSDcon 2014
 Date: 2014-09-24 23:50
 Category: Blog
 Tags: minix,bsd
