@@ -11,6 +11,7 @@ FEED_ATOM = 'atom.xml'
 FEED_RSS = 'rss.xml'
 TWITTER_USERNAME = 'bjg'
 FLATTR_USER = 'ben.gras'
+STATIC_PATHS = [ 'images' , 'files' ]
 
 PLUGINS = [
     'pelican_youtube',
