@@ -40,13 +40,15 @@ About Where the Code Is
 There are 3 repo's to be concerned with:
 
   *  The RTEMS Source builder, or RSB, which builds a bunch of tools and dependencies to build RTEMS itself
-  *  RTEMS itself; hardware-specific code (the BSP's) and generic code (RTEMS core)
+  *  RTEMS itself; hardware-specific code (the BSP's) and generic code (RTEMS core) (BSP is mainlined!)
   *  RTEMS tools. We use it to automatically execute the RTEMS test suite.
 
 All these repositories have work in them by me to support building
 & testing the BSP. Currently they are not merged with RTEMS official
 repositories. If and when they are, I will update this post to
 reflect the official locations.
+
+Currently the BSP is mainlined, but the RSB and rtems-tools parts are not.
 
 First: build the toolchain, uboot, qemu and supporting utilities
 ----------------------------------------------------------------
