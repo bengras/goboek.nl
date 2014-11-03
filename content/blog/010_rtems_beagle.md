@@ -101,15 +101,15 @@ First set the $PATH to include the built tools:
     % cd $HOME/development/rtems
     % export PATH=$HOME/development/rtems/4.11/bin:$PATH
 
-Now fetch the code:
+Now fetch the code (update nov 3rd: BSP is mainlined):
 
-        % git clone -b beaglebone-wip https://github.com/bengras/rtems.git rtems-src
-        Cloning into 'rtems-src'...
-        remote: Counting objects: 450470, done.
-        remote: Compressing objects: 100% (81722/81722), done.
-        remote: Total 450470 (delta 359488), reused 450131 (delta 359253)
-        Receiving objects: 100% (450470/450470), 68.41 MiB | 1.58 MiB/s, done.
-        Resolving deltas: 100% (359488/359488), done.
+        % git clone git://git.rtems.org/rtems rtems-src
+	remote: Counting objects: 460971, done.
+	remote: Compressing objects: 100% (90271/90271), done.
+	remote: Total 460971 (delta 372942), reused 446440 (delta 360846)
+	Receiving objects: 100% (460971/460971), 63.28 MiB | 568.00 KiB/s, done.
+	Resolving deltas: 100% (372942/372942), done.
+	Checking connectivity... done.
         % cd rtems-src 
     
 The bootstrap step to generate the configure files:
