@@ -11,6 +11,8 @@ Everything about RTEMS on Beagleboards & Beaglebones
 
 Welcome to the 10th post!
 
+(updated fri sep 25 2015 with 'requirements' section, especially for the console cable warning. you need a seperate cable for the BBB console on rtems.)
+
 Purpose of this post
 --------------------
 Don't have anything RTEMS installed on your machine but want to get it running on the Beaglebone? Or curious about how it runs, but don't have the hardware and want to run it in an emulator? Read on.
@@ -25,6 +27,15 @@ Introduction
 As faithful readers know, I am working on RTEMS support for the Beagleboard, Beaglebone and Beaglebone Black. There has been quite some interest in Beagle support for RTEMS on the RTEMS mailing lists recently, quite suddenly I thought. That made me decide to offer the current state of the BSP for merging with RTEMS mainline. The alternative is to keep polishing it and improving support out-of-tree. But that is better done from RTEMS mainline now.
 
 So as mentioned, the purpose of this post is to start from nothing RTEMS-specific and build everything needed to run an RTEMS app on your Beagle target. As you'll see it isn't labour-intensive.
+
+Requirements
+------------
+  * Target Hardware: Beagleboard XM, Beaglebone white, or beaglebone black. Original Beagleboard (plain)  and beaglebone green should also work but I haven't personally tested that.
+  * Peripherals: a way to power the target (sometimes USB will do); a micro-sd card to boot from (beaglebones)
+  * Console cable: we talk to the target using a serial console. This is highly target-dependent.
+     * For the beagleboard XM, you need a way to talk to a regular db9 serial port.
+     * For the beaglebone white, you only need to connect a usb cable; the target UART is bridged to a USB serial device, VERY convenient.
+     * For the beaglebone black, you need a special ttl-logic-level rs232 to usb cable. The builtin USB is NOT functional other than for power under RTEMS. (USB OTG would have to be implemented in RTEMS for this to work.) See [the official beagle faq, serial section](http://beagleboard.org/support/faq#Serial)
 
 Acknowledgements
 ----------------
