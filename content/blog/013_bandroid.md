@@ -6,7 +6,7 @@ Summary: A Android vulnerability called BAnderoid is found and described. This w
 
 Explain Like I'm 5
 ===================
-Do you know those banks that use text messages on your phone to double-check who you are? It's extra safe, because people can't steal your phone. Wrong, it's not safe. It's bad. This post explains how and why.
+Do you know those banks that use text messages on your phone to double-check who you are when you want to do an transaction on their website with your account? It's extra safe, because people can't steal your phone. Wrong, it's not safe. If you're using an Android phone. It's bad. This post explains how and why.
 
 We do this so we can pressure Google into removing the feature from Android that makes this possible.
 
