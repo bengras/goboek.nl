@@ -30,7 +30,7 @@ So as mentioned, the purpose of this post is to start from nothing RTEMS-specifi
 
 Requirements
 ------------
-  * Target Hardware: Beagleboard XM, Beaglebone white, or beaglebone black. Original Beagleboard (plain)  and beaglebone green should also work but I haven't personally tested that.
+  * Target Hardware: Beagleboard XM, Beaglebone white, or beaglebone black. Original Beagleboard (plain)  and beaglebone green should also work but I haven't personally tested that. If you don't have any hardware, you can also run the beagleboard xm in an emulator which will be built for you automatically in this procedure.
   * Peripherals: a way to power the target (sometimes USB will do); a micro-sd card to boot from (beaglebones)
   * Console cable: we talk to the target using a serial console. This is highly target-dependent.
      * For the beagleboard XM, you need a way to talk to a regular db9 serial port.
