@@ -11,7 +11,7 @@ Everything about RTEMS on Beagleboards & Beaglebones
 
 Welcome to the 10th post!
 
-(updated fri sep 25 2015 with 'requirements' section, especially for the console cable warning. you need a seperate cable for the BBB console on rtems.)
+(Updated fri sep 25 2015 with 'requirements' section, especially for the console cable warning. you need a seperate cable for the BBB console on rtems. Shortly after: 64bit ubuntu vs 32bit ubuntu.)
 
 Purpose of this post
 --------------------
