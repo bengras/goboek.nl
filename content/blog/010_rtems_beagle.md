@@ -37,6 +37,7 @@ Requirements
      * For the beaglebone white, you only need to connect a usb cable; the target UART is bridged to a USB serial device, VERY convenient.
      * For the beaglebone black, you need a special ttl-logic-level rs232 to usb cable. The builtin USB is NOT functional other than for power under RTEMS. (USB OTG would have to be implemented in RTEMS for this to work.) See [the official beagle faq, serial section](http://beagleboard.org/support/faq#Serial)
   * Operating system: it shouldn't matter THAT much, but unfortunately it does. I've tested this on 64-bit Ubuntu. 32-bit Ubuntu has a reported problem (thank you Claudio Scordino) that was solved by building in 64-bit. Other OSes (FreeBSD etc) should work too but have minor build problems I hope to be able to fix in the future.
+  * pax is needed
 
 Acknowledgements
 ----------------
