@@ -13,6 +13,8 @@ Welcome to the 10th post!
 
 (Updated fri sep 25 2015 with 'requirements' section, especially for the console cable warning. you need a seperate cable for the BBB console on rtems. Shortly after: 64bit ubuntu vs 32bit ubuntu.)
 
+(Updated sun dec 27 2015 with changes to make RTEMS 4.12 work.)
+
 Purpose of this post
 --------------------
 Don't have anything RTEMS installed on your machine but want to get it running on the Beaglebone? Or curious about how it runs, but don't have the hardware and want to run it in an emulator? Read on.
@@ -96,12 +98,12 @@ First verify the basic dependencies are on the system.
 	RTEMS Source Builder - Check, v0.3.0
 	Environment is ok
 
-Then build the beagle bset. We tell RSB to install the binaries under the $HOME/development/rtems/4.11 prefix.
+Then build the beagle bset. We tell RSB to install the binaries under the $HOME/development/rtems/4.12 prefix.
 
         % cd rtems-source-builder/rtems
-        % ../source-builder/sb-set-builder --log=beagle.txt --prefix=$HOME/development/rtems/4.11 devel/beagle.bset
+        % ../source-builder/sb-set-builder --log=beagle.txt --prefix=$HOME/development/rtems/4.12 devel/beagle.bset
 
-Ok, great. This will have built the toolchain with the right target, qemu, uboot, and some supporting utilities needed to prepare the SD card. They are all under $HOME/development/rtems/4.11. We will use these soon enough.
+Ok, great. This will have built the toolchain with the right target, qemu, uboot, and some supporting utilities needed to prepare the SD card. They are all under $HOME/development/rtems/4.12. We will use these soon enough.
 
 Next: build RTEMS, Beagle BSPs and test suite
 ---------------------------------------------
@@ -114,7 +116,7 @@ OK let's build the beagleboardxm and beagleboneblack BSPs!
 First set the $PATH to include the built tools:
 
     % cd $HOME/development/rtems
-    % export PATH=$HOME/development/rtems/4.11/bin:$PATH
+    % export PATH=$HOME/development/rtems/4.12/bin:$PATH
 
 Now fetch the code (update nov 3rd: BSP is mainlined):
 
@@ -135,10 +137,10 @@ The bootstrap step to generate the configure files:
 Configure everything, selecting the beagleboneblack and the beagleboardxm modes. We also tell it to build the full test suite (--enable-tests) and for this reason we make the console operate in polled mode, a requirement for the tests to be run. On this BSP that is accomplished by setting CONSOLE_POLLED=1 at configure time. The default is interrupt-driven mode.
 
         % mkdir b-beagle ; cd b-beagle
-        % CONSOLE_POLLED=1 ../rtems-src/configure --target=arm-rtems4.11 --enable-rtemsbsp="beagleboneblack beagleboardxm" --enable-tests
+        % CONSOLE_POLLED=1 ../rtems-src/configure --target=arm-rtems4.12 --enable-rtemsbsp="beagleboneblack beagleboardxm" --enable-tests
         % make
 
-If all went according to plan, you have a bunch of .exe files in the $HOME/development/rtems/b-beagle/arm-rtems4.11/c hierarchy. The full set twice - once linked with the beagleboardxm BSP, and once with the beagleboneblack BSP.
+If all went according to plan, you have a bunch of .exe files in the $HOME/development/rtems/b-beagle/arm-rtems4.12/c hierarchy. The full set twice - once linked with the beagleboardxm BSP, and once with the beagleboneblack BSP.
 
 Aside - How to run an ELF RTEMS image on a Beagle
 -------------------------------------------------
@@ -170,7 +172,7 @@ We can then simulate its execution with the Linaro fork of qemu, which emulates 
 This is invoked automatically for every test executable by the RTEMS beagleboardxm_qemu tester. Here we go:
 
         % cd rtems-tools/tester
-        % ./rtems-test --log=bbxm.log --report-mode=all --rtems-bsp=beagleboardxm_qemu --rtems-tools=$HOME/development/rtems/4.11 $HOME/development/rtems/b-beagle/arm-rtems4.11/c/beagleboardxm
+        % ./rtems-test --log=bbxm.log --report-mode=all --rtems-bsp=beagleboardxm_qemu --rtems-tools=$HOME/development/rtems/4.12 $HOME/development/rtems/b-beagle/arm-rtems4.12/c/beagleboardxm
 
 This will (on my machine) run for 30 minutes, executing all the tests, with parallelism even, a very nice system. The output in my case:
 
@@ -190,7 +192,7 @@ Writing an SD card image for the Beaglebone Black
 In the RTEMS source tree itself there is a similar script to the above that lets you write an SD card image with a specific RTEMS executable on it. Let's write one for the Beaglebone Black:
 
         % cd $HOME/development/rtems/rtems-src/c/src/lib/libbsp/arm/beagle/simscripts
-        % sh sdcard.sh $HOME/development/rtems/4.11 $HOME/development/rtems/b-beagle/arm-rtems4.11/c/beagleboneblack/testsuites/samples/hello/hello.exe
+        % sh sdcard.sh $HOME/development/rtems/4.12 $HOME/development/rtems/b-beagle/arm-rtems4.12/c/beagleboneblack/testsuites/samples/hello/hello.exe
 
 The script should give you a whole bunch of output, ending in:
 
@@ -273,7 +275,7 @@ Try it:
         # mkdir bbxm-gdb
         # cd bbxm-gdb 
         # cp ../gdbinit.bbxm .gdbinit
-        # arm-rtems4.11-gdb $HOME/development/rtems/b-beagle/arm-rtems4.11/c/beagleboardxm/testsuites/samples/ticker/ticker.exe
+        # arm-rtems4.12-gdb $HOME/development/rtems/b-beagle/arm-rtems4.12/c/beagleboardxm/testsuites/samples/ticker/ticker.exe
         GNU gdb (GDB) 7.7
         -snip-
         Breakpoint 10 at 0x80015dcc: file ../../../../../../rtems-src/c/src/../../cpukit/libcsupport/src/newlibc_exit.c, line 37.
@@ -296,7 +298,7 @@ Running the full test suite over JTAG
 Doing the above in batch mode lets us run the full test suite on hardware, the only real test of course. We specify the beagleboardxm bsp insteadof the beagleboardxm_qemu bsp. This one will talk to gdb to load and run the executable each time.
 
         # cd $HOME/development/rtems/rtems-tools/tester
-        # ./rtems-test --log=bbxm-jtag.log --report-mode=all --rtems-bsp=beagleboardxm --rtems-tools=$HOME/development/rtems/4.11 $HOME/development/rtems/b-beagle/arm-rtems4.11/c/beagleboardxm
+        # ./rtems-test --log=bbxm-jtag.log --report-mode=all --rtems-bsp=beagleboardxm --rtems-tools=$HOME/development/rtems/4.12 $HOME/development/rtems/b-beagle/arm-rtems4.12/c/beagleboardxm
 
 That is it! Everything RTEMS on Beagle!
 
