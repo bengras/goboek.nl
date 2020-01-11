@@ -21,7 +21,7 @@ Both usage and its internal structure, and real-time systems in general.
 I had done some preparation beforehand so that I would get the most out of
 the class, but both were something of a first for me.
 
-![Joel teaching]({filename}/images/joel-teach.jpg)
+![Joel teaching]({static}/images/joel-teach.jpg)
 
 Pictured above: Joel in front of the projection screen.
 
@@ -31,7 +31,7 @@ He lives in the US so we don't see each other much. It was great to
 catch up a bit and talk about subjects ranging from technical RTEMS
 subjects, to life and happiness and such things in general.
 
-![Having a beer with Joel]({filename}/images/socialize.jpg)
+![Having a beer with Joel]({static}/images/socialize.jpg)
 
 Left: me. Right: Joel.
 
@@ -54,14 +54,14 @@ I hacked on it as much as I could between classes and socializing and
 it to the rest of the class! We hooked up my laptop to the projector
 and went to town.
 
-![Joel demonstrating RTEMS on my beaglebone black]({filename}/images/demo.jpg)
+![Joel demonstrating RTEMS on my beaglebone black]({static}/images/demo.jpg)
 
 Pictured: Joel demonstrating RTEMS running on the Beaglebone Black that
 I brought with me.
 
 And, also on the last day:
 
-![Joel demonstrating RTEMS on my beaglebone black]({filename}/images/cert.jpg)
+![Joel demonstrating RTEMS on my beaglebone black]({static}/images/cert.jpg)
 
 I got a certificate! It really did feel like going back to school and it
 was quite a nice experience.

@@ -24,4 +24,4 @@ beamer in my living room.
 Here is a teaser of the android install booting.. the game isn't released
 yet after all!
 
-![Game running on my beamer]({filename}/images/android-game.jpg)
+![Game running on my beamer]({static}/images/android-game.jpg)

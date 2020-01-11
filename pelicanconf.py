@@ -4,7 +4,6 @@ PATH = 'content'
 SITEURL = 'http://www.shrike-systems.com'
 SITENAME = 'Shrike Systems'
 TIMEZONE = 'CET'
-THEME = '../pelican-themes/zurb-F5-basic'
 DELETE_OUTPUT_DIRECTORY = True
 FEED_ATOM = 'atom.xml'
 FEED_RSS = 'rss.xml'

@@ -7,7 +7,7 @@ Summary: How to get everything RTEMS running on everything Beagle from scratch.
 Everything about RTEMS on Beagleboards & Beaglebones
 ====================================================
 
-![Beagleboard]({filename}/images/beagle.jpg)
+![Beagleboard]({static}/images/beagle.jpg)
 
 Welcome to the 10th post!
 

@@ -4,7 +4,7 @@ Category: Blog
 Tags: rtems
 Summary: Dr Joel of RTEMS came to visit the VU University and gave a great talk on Embedded, Realtime, RTEMS and SMP. I made a video of it.
 
-![Embedded device]({filename}/images/embedded.jpg)
+![Embedded device]({static}/images/embedded.jpg)
 
 Embedded device.
 

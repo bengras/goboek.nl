@@ -4,7 +4,7 @@ Category: Blog
 Tags: llvm,minix
 Summary: A story about the powerful possibilities of building code using LLVM bitcode; and a binutils gold bug I came across and fixed.
 
-![Lightning]({filename}/images/lightning.jpg)
+![Lightning]({static}/images/lightning.jpg)
 
 The power of LLVM. Image: Rainer Knäpper
 
@@ -15,7 +15,7 @@ to do it? Read on.
 
 ## Introduction to LLVM 
 
-![LLVM Dragon]({filename}/images/llvm-dragon-small.png)
+![LLVM Dragon]({static}/images/llvm-dragon-small.png)
 
 [LLVM](http://www.llvm.org/) is a full compiler infrastructure made to not
 only compile various languages to various kinds of machine code, but also work with
@@ -109,7 +109,7 @@ and fault injection.
 
 ## Gold bugs
 
-![Gold bug]({filename}/images/goldbug.jpg)
+![Gold bug]({static}/images/goldbug.jpg)
 
 To link bitcode files and perform transformations on them at link
 time, the [Binutils Gold linker](http://en.wikipedia.org/wiki/Gold_%28linker%29)

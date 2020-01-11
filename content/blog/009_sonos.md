@@ -4,7 +4,7 @@ Category: Blog
 Tags: sonos
 Summary: 
 
-![Embedded device]({filename}/images/Sonos-company.png)
+![Embedded device]({static}/images/Sonos-company.png)
 
 I'm a Sonos fan.
 
