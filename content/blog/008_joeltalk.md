@@ -59,7 +59,7 @@ Here is the video. Enjoy!
 <iframe class="youtube-player"
 type="text/html"
 width="640" height="385"
-src="http://www.youtube.com/embed/7Jh9PUSBPAY" allowfullscreen frameborder="0" cc_load_policy="1">
+src="https://www.youtube.com/embed/7Jh9PUSBPAY" allowfullscreen frameborder="0" cc_load_policy="1">
 </iframe>
 
 ## PS About The Subtitles
