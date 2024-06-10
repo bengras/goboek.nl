@@ -18,7 +18,7 @@ How about a video of a talk describing the problem in ful detail?
 <iframe class="youtube-player"
 type="text/html"
 width="640" height="385"
-src="http://www.youtube.com/embed/7WiE0cpsxv4" allowfullscreen frameborder="0" cc_load_policy="1">
+src="https://www.youtube.com/embed/7WiE0cpsxv4" allowfullscreen frameborder="0" cc_load_policy="1">
 </iframe>
 
 What?
