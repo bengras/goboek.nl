@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Beagleboard xM, Beaglebone black and everything else RTEMS on the Beagles</title>
+  <meta name="author" content="Ben Gras">
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="description" content="Beagleboard xM, Beaglebone black and everything else RTEMS on the Beagles written July 22, 2014 in beagle,beaglebone,beagleboard,rtems">
+
+  <link rel="canonical" href="https://bengras.github.io/beagleboard-xm-beaglebone-black-and-everything-else-rtems-on-the-beagles.html">
+
+  <link href="https://bengras.github.io/favicon.png" rel="icon">
+
+  <link href="https://bengras.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Shrike Systems Full Atom Feed" />
+
+  <link href="https://bengras.github.io/theme/css/screen.css"  media="screen, projection" rel="stylesheet" type="text/css" />
+  <link href="https://bengras.github.io/theme/css/tomorrow.css"  media="screen, projection" rel="stylesheet" type="text/css" />
+
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+</head>
+  <body>
+    <a href="/" class="home-icon">
+      <img src="https://bengras.github.io/theme/images/home.png"/>
+    </a>
+<article role="article" class="full-single-article">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h1>Beagleboard xM, Beaglebone black and everything else RTEMS on the Beagles</h1>
+        <div class="meta">
+          written <time datetime="2014-07-22T09:15:00+02:00">July 22, 2014</time>
+          in <span class="categories">
+            <a href="https://bengras.github.io/tag/beagle.html">beagle</a>,            <a href="https://bengras.github.io/tag/beaglebone.html">beaglebone</a>,            <a href="https://bengras.github.io/tag/beagleboard.html">beagleboard</a>,            <a href="https://bengras.github.io/tag/rtems.html">rtems</a>          </span>
+        </div>
+        <h1>Everything about RTEMS on Beagleboards &amp; Beaglebones</h1>
+<p><img alt="Beagleboard" src="https://bengras.github.io/images/beagle.jpg"></p>
+<p>Welcome to the 10th post!</p>
+<p>(Updated fri sep 25 2015 with 'requirements' section, especially for the console cable warning. you need a seperate cable for the BBB console on rtems. Shortly after: 64bit ubuntu vs 32bit ubuntu.)</p>
+<p>(Updated sun dec 27 2015 with changes to make RTEMS 4.12 work.)</p>
+<h2>Purpose of this post</h2>
+<p>Don't have anything RTEMS installed on your machine but want to get it running on the Beaglebone? Or curious about how it runs, but don't have the hardware and want to run it in an emulator? Read on.</p>
+<p>Who am I kidding. Everyone wants that!</p>
+<p>This post will show you in detail how to get RTEMS applications running from scratch on the BeagleBoard xM, Beaglebone and Beaglebone Black. Actually it should work on the original BeagleBoard too but I don't have that hardware to test it.</p>
+<h2>Introduction</h2>
+<p>As faithful readers know, I am working on RTEMS support for the Beagleboard, Beaglebone and Beaglebone Black. There has been quite some interest in Beagle support for RTEMS on the RTEMS mailing lists recently, quite suddenly I thought. That made me decide to offer the current state of the BSP for merging with RTEMS mainline. The alternative is to keep polishing it and improving support out-of-tree. But that is better done from RTEMS mainline now.</p>
+<p>So as mentioned, the purpose of this post is to start from nothing RTEMS-specific and build everything needed to run an RTEMS app on your Beagle target. As you'll see it isn't labour-intensive.</p>
+<h2>Requirements</h2>
+<ul>
+<li>Target Hardware: Beagleboard XM, Beaglebone white, or beaglebone black. Original Beagleboard (plain)  and beaglebone green should also work but I haven't personally tested that. If you don't have any hardware, you can also run the beagleboard xm in an emulator which will be built for you automatically in this procedure.</li>
+<li>Peripherals: a way to power the target (sometimes USB will do); a micro-sd card to boot from (beaglebones)</li>
+<li>Console cable: we talk to the target using a serial console. This is highly target-dependent.<ul>
+<li>For the beagleboard XM, you need a way to talk to a regular db9 serial port.</li>
+<li>For the beaglebone white, you only need to connect a usb cable; the target UART is bridged to a USB serial device, VERY convenient.</li>
+<li>For the beaglebone black, you need a special ttl-logic-level rs232 to usb cable. The builtin USB is NOT functional other than for power under RTEMS. (USB OTG would have to be implemented in RTEMS for this to work.) See <a href="http://beagleboard.org/support/faq#Serial">the official beagle faq, serial section</a></li>
+</ul>
+</li>
+<li>Operating system: it shouldn't matter THAT much, but unfortunately it does. I've tested this on 64-bit Ubuntu. 32-bit Ubuntu has a reported problem (thank you Claudio Scordino) that was solved by building in 64-bit. Other OSes (FreeBSD etc) should work too but have minor build problems I hope to be able to fix in the future.</li>
+<li>pax is needed</li>
+</ul>
+<h2>Acknowledgements</h2>
+<p>Chris Johns helped guide the polishing of the BSP a lot when I first came
+up with it (he didn't call it Ben and Chris's Big Beagleboard Adventure for
+nothing!). Brandon Matthews asked a question about running RTEMS on the
+Beaglebone once and has since been very patient and helpful in collaborating
+to move the process along. Claas Ziemke
+started the, as-yet unmerged, original Beagleboard BSP for GSoC in 2012.</p>
+<h2>About Where the Code Is</h2>
+<p>There are 3 repo's to be concerned with:</p>
+<ul>
+<li>The RTEMS Source builder, or RSB, which builds a bunch of tools and dependencies to build RTEMS itself</li>
+<li>RTEMS itself; hardware-specific code (the BSP's) and generic code (RTEMS core) (BSP is mainlined!)</li>
+<li>RTEMS tools. We use it to automatically execute the RTEMS test suite.</li>
+</ul>
+<p>All these repositories have work in them by me to support building
+&amp; testing the BSP. Currently they are not merged with RTEMS official
+repositories. If and when they are, I will update this post to
+reflect the official locations.</p>
+<p>Currently the BSP is mainlined, but the RSB and rtems-tools parts are not.</p>
+<h2>First: build the toolchain, uboot, qemu and supporting utilities</h2>
+<p>The toolchain is needed to actually compile code to run on the Beagles. Fortunately the <a href="http://www.rtems.org/wiki/index.php/RTEMS_Source_Builder">RTEMS Source Builder</a> provides a way to do this in an automated, repeatable fashion. Also called the RSB. I have added some packages to the RSB to facilitate testing and preparing an SD card image to boot and run on Beagle targets.</p>
+<p>This is combined in the bset 'beagle' and is all built with the following simple commands. We start by creating the directory all the RTEMS-specific stuff wil happen in, both binaries and sources. I am choosing $HOME/development/rtems/.</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="c">% mkdir -p development/rtems/sources</span>
+<span class="w">    </span><span class="c">% cd development/rtems/sources</span>
+</code></pre></div>
+
+<p>The RSB has bsets you can choose from which are a set of tools with all needed dependencies. There is a toolchain bset for instance. I added a beagle bset which contains the toolchain and all other utilities and software we need.</p>
+<p>Check you have the dependencies the RSB itself depends on. Go to the
+<a href="http://www.rtems.org/ftp/pub/rtems/people/chrisj/source-builder/source-builder.html#_host_setups">RTEMS Source Builder Host Setups</a> section and look for your OS.
+I've tested this on Ubuntu and FreeBSD and it doesn't quite go out-of-the-box otherwise.</p>
+<p>Now fetch the RSB.</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="c">% git clone -b beagle https://github.com/bengras/rtems-source-builder.git</span>
+<span class="w">    </span><span class="n">Cloning</span><span class="w"> </span><span class="n">into</span><span class="w"> </span><span class="s">&#39;rtems-source-builder&#39;</span><span class="k">...</span>
+<span class="w">    </span><span class="n">remote</span><span class="p">:</span><span class="w"> </span><span class="n">Reusing</span><span class="w"> </span><span class="n">existing</span><span class="w"> </span><span class="nb">pack</span><span class="p">:</span><span class="w"> </span><span class="mi">3999</span><span class="p">,</span><span class="w"> </span><span class="n">done</span><span class="p">.</span>
+<span class="w">    </span><span class="n">remote</span><span class="p">:</span><span class="w"> </span><span class="n">Counting</span><span class="w"> </span><span class="n">objects</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w"> </span><span class="n">done</span><span class="p">.</span>
+<span class="w">    </span><span class="n">remote</span><span class="p">:</span><span class="w"> </span><span class="n">Compressing</span><span class="w"> </span><span class="n">objects</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="c">% (15/15), done.</span>
+<span class="w">    </span><span class="n">remote</span><span class="p">:</span><span class="w"> </span><span class="n">Total</span><span class="w"> </span><span class="mi">4015</span><span class="w"> </span><span class="p">(</span><span class="n">delta</span><span class="w"> </span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="n">reused</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">(</span><span class="n">delta</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<span class="w">    </span><span class="n">Receiving</span><span class="w"> </span><span class="n">objects</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="c">% (4015/4015), 2.96 MiB | 1.13 MiB/s, done.</span>
+<span class="w">    </span><span class="n">Resolving</span><span class="w"> </span><span class="n">deltas</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="c">% (2361/2361), done.</span>
+</code></pre></div>
+
+<p>First verify the basic dependencies are on the system.</p>
+<div class="highlight"><pre><span></span><code><span class="c">% ./rtems-source-builder/source-builder/sb-check </span>
+<span class="n">RTEMS</span><span class="w"> </span><span class="s">Source</span><span class="w"> </span><span class="s">Builder</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Check</span><span class="p">,</span><span class="w"> </span><span class="n">v0</span><span class="p">.</span><span class="mf">3.0</span>
+<span class="n">Environment</span><span class="w"> </span><span class="s">is</span><span class="w"> </span><span class="s">ok</span>
+</code></pre></div>
+
+<p>Then build the beagle bset. We tell RSB to install the binaries under the $HOME/development/rtems/4.12 prefix.</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="c">% cd rtems-source-builder/rtems</span>
+<span class="w">    </span><span class="c">% ../source-builder/sb-set-builder --log=beagle.txt --prefix=$HOME/development/rtems/4.12 devel/beagle.bset</span>
+</code></pre></div>
+
+<p>Ok, great. This will have built the toolchain with the right target, qemu, uboot, and some supporting utilities needed to prepare the SD card. They are all under $HOME/development/rtems/4.12. We will use these soon enough.</p>
+<h2>Next: build RTEMS, Beagle BSPs and test suite</h2>
+<p>Time for the main act - the RTEMS code itself. We enable the Beagle BSP, build all the RTEMS code. </p>
+<p>At configure time, we can specify any set of four Beagle sub-BSPs: beagleboard, beagleboardxm, beaglebonewhite and beagleboneblack. beaglebonewhite is the original beaglebone but it's sometimes called white to dis-ambiguate it. In the BSP code there are only two cases but hardware-specific changes might change that in the future; so we have 4 cases now so the usage needn't change.</p>
+<p>OK let's build the beagleboardxm and beagleboneblack BSPs!</p>
+<p>First set the $PATH to include the built tools:</p>
+<div class="highlight"><pre><span></span><code><span class="o">%</span><span class="w"> </span><span class="n">cd</span><span class="w"> </span><span class="o">$</span><span class="n">HOME</span><span class="o">/</span><span class="n">development</span><span class="o">/</span><span class="n">rtems</span>
+<span class="o">%</span><span class="w"> </span><span class="k">export</span><span class="w"> </span><span class="n">PATH</span><span class="o">=$</span><span class="n">HOME</span><span class="o">/</span><span class="n">development</span><span class="o">/</span><span class="n">rtems</span><span class="o">/</span><span class="mf">4.12</span><span class="o">/</span><span class="n">bin</span><span class="p">:</span><span class="o">$</span><span class="n">PATH</span>
+</code></pre></div>
+
+<p>Now fetch the code (update nov 3rd: BSP is mainlined):</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="c">% git clone git://git.rtems.org/rtems rtems-src</span>
+<span class="n">remote</span><span class="p">:</span><span class="w"> </span><span class="n">Counting</span><span class="w"> </span><span class="n">objects</span><span class="p">:</span><span class="w"> </span><span class="mi">460971</span><span class="p">,</span><span class="w"> </span><span class="n">done</span><span class="p">.</span>
+<span class="n">remote</span><span class="p">:</span><span class="w"> </span><span class="n">Compressing</span><span class="w"> </span><span class="n">objects</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="c">% (90271/90271), done.</span>
+<span class="n">remote</span><span class="p">:</span><span class="w"> </span><span class="n">Total</span><span class="w"> </span><span class="mi">460971</span><span class="w"> </span><span class="p">(</span><span class="n">delta</span><span class="w"> </span><span class="mi">372942</span><span class="p">),</span><span class="w"> </span><span class="n">reused</span><span class="w"> </span><span class="mi">446440</span><span class="w"> </span><span class="p">(</span><span class="n">delta</span><span class="w"> </span><span class="mi">360846</span><span class="p">)</span>
+<span class="n">Receiving</span><span class="w"> </span><span class="s">objects:</span><span class="w"> </span><span class="s">100%</span><span class="w"> </span><span class="s">(460971/460971),</span><span class="w"> </span><span class="s">63.28</span><span class="w"> </span><span class="s">MiB</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mf">568.00</span><span class="w"> </span><span class="n">KiB</span><span class="o">/</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">done</span><span class="p">.</span>
+<span class="n">Resolving</span><span class="w"> </span><span class="s">deltas:</span><span class="w"> </span><span class="s">100%</span><span class="w"> </span><span class="s">(372942/372942),</span><span class="w"> </span><span class="s">done.</span>
+<span class="n">Checking</span><span class="w"> </span><span class="s">connectivity...</span><span class="w"> </span><span class="s">done.</span>
+<span class="w">    </span><span class="c">% cd rtems-src</span>
+</code></pre></div>
+
+<p>The bootstrap step to generate the configure files:</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="c">% ./bootstrap; ./bootstrap -p</span>
+<span class="w">    </span><span class="c">% cd ..</span>
+</code></pre></div>
+
+<p>Configure everything, selecting the beagleboneblack and the beagleboardxm modes. We also tell it to build the full test suite (--enable-tests) and for this reason we make the console operate in polled mode, a requirement for the tests to be run. On this BSP that is accomplished by setting CONSOLE_POLLED=1 at configure time. The default is interrupt-driven mode.</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="c">% mkdir b-beagle ; cd b-beagle</span>
+<span class="w">    </span><span class="c">% CONSOLE_POLLED=1 ../rtems-src/configure --target=arm-rtems4.12 --enable-rtemsbsp=&quot;beagleboneblack beagleboardxm&quot; --enable-tests</span>
+<span class="w">    </span><span class="c">% make</span>
+</code></pre></div>
+
+<p>If all went according to plan, you have a bunch of .exe files in the $HOME/development/rtems/b-beagle/arm-rtems4.12/c hierarchy. The full set twice - once linked with the beagleboardxm BSP, and once with the beagleboneblack BSP.</p>
+<h2>Aside - How to run an ELF RTEMS image on a Beagle</h2>
+<p>Something that isn't actually so obvious. We have an ELF-formatted .exe file now. How will that be loaded and executed on our targets? That is highly target-specific, and out of scope for RTEMS itself. Somehow the hardware has to be initialized. The file has to be loaded into memory in the right place and with the right initialization. Then the cpu has to be sent there. All this is not done by RTEMS itself, it can't. Usually we rely on a bootloader to do this.</p>
+<p>There are many options, but to get started, this page shows you how to write an SD card with an RTEMS image and a boot loader on it, completely self-contained.</p>
+<p>Other options are netbooting (so you don't have to write an SD card every time you want to boot something else) or loading with JTAG (no SD card or bootloader needed at all).</p>
+<p>We need uboot and several other tools to prepare a partitioned  SD card with a filesystem on it.</p>
+<p>It would be a chore to make the user re-invent this all the time, so we rely on a script that is in the RTEMS tree already.</p>
+<h2>Run the test suite</h2>
+<p>To track whether all code actually performs as expected with this BSP, we can automatically run all the RTEMS tests. Every piece of test code is linked with this BSP and executed. These are currently 501 tests. Each one is considered a success (passed) if it displays the start and end banner as its output. </p>
+<p>It is a great correctness baseline to establish, as future regressions (whether caused by changes in the BSP itself or not) can then be automatically caught. We simulate this execution so the target hardware isn't required to run the test set.</p>
+<p>First we fetch RTEMS tools, containing the testing code:</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="o">%</span><span class="w"> </span><span class="n">cd</span><span class="w"> </span><span class="o">$</span><span class="n">HOME</span><span class="o">/</span><span class="n">development</span><span class="o">/</span><span class="n">rtems</span>
+<span class="w">    </span><span class="o">%</span><span class="w"> </span><span class="n">git</span><span class="w"> </span><span class="n">clone</span><span class="w"> </span><span class="o">-</span><span class="n">b</span><span class="w"> </span><span class="n">bbxm</span><span class="o">-</span><span class="n">wip</span><span class="w"> </span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">bengras</span><span class="o">/</span><span class="n">rtems</span><span class="o">-</span><span class="n">tools</span><span class="o">.</span><span class="n">git</span><span class="w"> </span><span class="n">rtems</span><span class="o">-</span><span class="n">tools</span>
+</code></pre></div>
+
+<p>Earlier, the RTEMS source builder has fetched and built a lot of required tools to actually run a test. There is a script in the RTEMS tester tree that takes an RTEMS executable, processes it into an image that uboot will load (using objdump and mkimage), put it together with MLO and uboot on a filesystem, and write an SD card image with it.</p>
+<p>We can then simulate its execution with the Linaro fork of qemu, which emulates a beagleboard xM in software.</p>
+<p>This is invoked automatically for every test executable by the RTEMS beagleboardxm_qemu tester. Here we go:</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="o">%</span><span class="w"> </span><span class="n">cd</span><span class="w"> </span><span class="n">rtems</span><span class="o">-</span><span class="n">tools</span><span class="o">/</span><span class="n">tester</span>
+<span class="w">    </span><span class="o">%</span><span class="w"> </span><span class="o">./</span><span class="n">rtems</span><span class="o">-</span><span class="n">test</span><span class="w"> </span><span class="o">--</span><span class="nb">log</span><span class="o">=</span><span class="n">bbxm</span><span class="o">.</span><span class="n">log</span><span class="w"> </span><span class="o">--</span><span class="n">report</span><span class="o">-</span><span class="n">mode</span><span class="o">=</span><span class="n">all</span><span class="w"> </span><span class="o">--</span><span class="n">rtems</span><span class="o">-</span><span class="n">bsp</span><span class="o">=</span><span class="n">beagleboardxm_qemu</span><span class="w"> </span><span class="o">--</span><span class="n">rtems</span><span class="o">-</span><span class="n">tools</span><span class="o">=$</span><span class="n">HOME</span><span class="o">/</span><span class="n">development</span><span class="o">/</span><span class="n">rtems</span><span class="o">/</span><span class="mf">4.12</span><span class="w"> </span><span class="o">$</span><span class="n">HOME</span><span class="o">/</span><span class="n">development</span><span class="o">/</span><span class="n">rtems</span><span class="o">/</span><span class="n">b</span><span class="o">-</span><span class="n">beagle</span><span class="o">/</span><span class="n">arm</span><span class="o">-</span><span class="n">rtems4</span><span class="o">.</span><span class="mi">12</span><span class="o">/</span><span class="n">c</span><span class="o">/</span><span class="n">beagleboardxm</span>
+</code></pre></div>
+
+<p>This will (on my machine) run for 30 minutes, executing all the tests, with parallelism even, a very nice system. The output in my case:</p>
+<div class="highlight"><pre><span></span><code>    Passed:   497
+    Failed:     3
+    Timeouts:   1
+    Invalid:    0
+    Total:    501
+    Average test time: 0:00:03.534494
+    Testing time     : 0:29:30.781935
+</code></pre></div>
+
+<p>So there are a few tests I should still diagnose before the baseline is as clean as it should be. But a pretty good start I'd say!</p>
+<h2>Writing an SD card image for the Beaglebone Black</h2>
+<p>In the RTEMS source tree itself there is a similar script to the above that lets you write an SD card image with a specific RTEMS executable on it. Let's write one for the Beaglebone Black:</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="c">% cd $HOME/development/rtems/rtems-src/c/src/lib/libbsp/arm/beagle/simscripts</span>
+<span class="w">    </span><span class="c">% sh sdcard.sh $HOME/development/rtems/4.12 $HOME/development/rtems/b-beagle/arm-rtems4.12/c/beagleboneblack/testsuites/samples/hello/hello.exe</span>
+</code></pre></div>
+
+<p>The script should give you a whole bunch of output, ending in:</p>
+<div class="highlight"><pre><span></span><code>    Result is in bone_hello.exe-sdcard.img.
+</code></pre></div>
+
+<p>There you go. dd that to an SD card .. (/dev/mmcblk0 in my case. careful!)</p>
+<div class="highlight"><pre><span></span><code><span class="gh">#</span> dd if=bone_hello.exe-sdcard.img of=/dev/mmcblk0 bs=4096
+</code></pre></div>
+
+<p>.. and boot!</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="c1"># picocom -b 115200 /dev/ttyUSB0</span>
+<span class="w">    </span><span class="n">U</span><span class="o">-</span><span class="n">Boot</span><span class="w"> </span><span class="n">SPL</span><span class="w"> </span><span class="mf">2014.04</span><span class="o">-</span><span class="mi">00015</span><span class="o">-</span><span class="n">gb4422bd</span><span class="w"> </span><span class="p">(</span><span class="n">Apr</span><span class="w"> </span><span class="mi">22</span><span class="w"> </span><span class="mi">2014</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">13</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">29</span><span class="p">)</span>
+<span class="w">    </span><span class="n">reading</span><span class="w"> </span><span class="n">args</span>
+<span class="w">    </span><span class="n">spl_load_image_fat_os</span><span class="p">:</span><span class="w"> </span><span class="n">error</span><span class="w"> </span><span class="n">reading</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="n">args</span><span class="p">,</span><span class="w"> </span><span class="n">err</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span>
+<span class="w">    </span><span class="n">reading</span><span class="w"> </span><span class="n">u</span><span class="o">-</span><span class="n">boot</span><span class="o">.</span><span class="n">img</span>
+<span class="w">    </span><span class="n">reading</span><span class="w"> </span><span class="n">u</span><span class="o">-</span><span class="n">boot</span><span class="o">.</span><span class="n">img</span>
+
+
+<span class="w">    </span><span class="n">U</span><span class="o">-</span><span class="n">Boot</span><span class="w"> </span><span class="mf">2014.04</span><span class="o">-</span><span class="mi">00015</span><span class="o">-</span><span class="n">gb4422bd</span><span class="w"> </span><span class="p">(</span><span class="n">Apr</span><span class="w"> </span><span class="mi">22</span><span class="w"> </span><span class="mi">2014</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">13</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">29</span><span class="p">)</span>
+
+<span class="w">    </span><span class="n">I2C</span><span class="p">:</span><span class="w">   </span><span class="n">ready</span>
+<span class="w">    </span><span class="n">DRAM</span><span class="p">:</span><span class="w">  </span><span class="mi">512</span><span class="w"> </span><span class="n">MiB</span>
+<span class="w">    </span><span class="n">NAND</span><span class="p">:</span><span class="w">  </span><span class="mi">0</span><span class="w"> </span><span class="n">MiB</span>
+<span class="w">    </span><span class="n">MMC</span><span class="p">:</span><span class="w">   </span><span class="n">OMAP</span><span class="w"> </span><span class="n">SD</span><span class="o">/</span><span class="n">MMC</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">OMAP</span><span class="w"> </span><span class="n">SD</span><span class="o">/</span><span class="n">MMC</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="o">***</span><span class="w"> </span><span class="n">Warning</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">readenv</span><span class="p">()</span><span class="w"> </span><span class="n">failed</span><span class="p">,</span><span class="w"> </span><span class="n">using</span><span class="w"> </span><span class="n">default</span><span class="w"> </span><span class="n">environment</span>
+
+<span class="w">    </span><span class="n">Net</span><span class="p">:</span><span class="w">   </span><span class="o">&lt;</span><span class="n">ethaddr</span><span class="o">&gt;</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">set</span><span class="o">.</span><span class="w"> </span><span class="n">Validating</span><span class="w"> </span><span class="n">first</span><span class="w"> </span><span class="n">E</span><span class="o">-</span><span class="n">fuse</span><span class="w"> </span><span class="n">MAC</span>
+<span class="w">    </span><span class="n">cpsw</span><span class="p">,</span><span class="w"> </span><span class="n">usb_ether</span>
+<span class="w">    </span><span class="n">Hit</span><span class="w"> </span><span class="n">any</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">stop</span><span class="w"> </span><span class="n">autoboot</span><span class="p">:</span><span class="w">  </span><span class="mi">0</span><span class="w"> </span>
+<span class="w">    </span><span class="n">gpio</span><span class="p">:</span><span class="w"> </span><span class="n">pin</span><span class="w"> </span><span class="mi">53</span><span class="w"> </span><span class="p">(</span><span class="n">gpio</span><span class="w"> </span><span class="mi">53</span><span class="p">)</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="n">mmc0</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="n">device</span>
+<span class="w">    </span><span class="n">gpio</span><span class="p">:</span><span class="w"> </span><span class="n">pin</span><span class="w"> </span><span class="mi">54</span><span class="w"> </span><span class="p">(</span><span class="n">gpio</span><span class="w"> </span><span class="mi">54</span><span class="p">)</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="n">SD</span><span class="o">/</span><span class="n">MMC</span><span class="w"> </span><span class="n">found</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="n">device</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="n">reading</span><span class="w"> </span><span class="n">uEnv</span><span class="o">.</span><span class="n">txt</span>
+<span class="w">    </span><span class="mi">99</span><span class="w"> </span><span class="n">bytes</span><span class="w"> </span><span class="n">read</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="n">ms</span><span class="w"> </span><span class="p">(</span><span class="mf">18.6</span><span class="w"> </span><span class="n">KiB</span><span class="o">/</span><span class="n">s</span><span class="p">)</span>
+<span class="w">    </span><span class="n">gpio</span><span class="p">:</span><span class="w"> </span><span class="n">pin</span><span class="w"> </span><span class="mi">55</span><span class="w"> </span><span class="p">(</span><span class="n">gpio</span><span class="w"> </span><span class="mi">55</span><span class="p">)</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="n">Loaded</span><span class="w"> </span><span class="n">environment</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="n">uEnv</span><span class="o">.</span><span class="n">txt</span>
+<span class="w">    </span><span class="n">Importing</span><span class="w"> </span><span class="n">environment</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="n">mmc</span><span class="w"> </span><span class="o">...</span>
+<span class="w">    </span><span class="n">Checking</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">uenvcmd</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">set</span><span class="w"> </span><span class="o">...</span>
+<span class="w">    </span><span class="n">gpio</span><span class="p">:</span><span class="w"> </span><span class="n">pin</span><span class="w"> </span><span class="mi">56</span><span class="w"> </span><span class="p">(</span><span class="n">gpio</span><span class="w"> </span><span class="mi">56</span><span class="p">)</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="n">Running</span><span class="w"> </span><span class="n">uenvcmd</span><span class="w"> </span><span class="o">...</span>
+<span class="w">    </span><span class="n">reading</span><span class="w"> </span><span class="n">rtems</span><span class="o">-</span><span class="n">app</span><span class="o">.</span><span class="n">img</span>
+<span class="w">    </span><span class="mi">58629</span><span class="w"> </span><span class="n">bytes</span><span class="w"> </span><span class="n">read</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="mi">11</span><span class="w"> </span><span class="n">ms</span><span class="w"> </span><span class="p">(</span><span class="mf">5.1</span><span class="w"> </span><span class="n">MiB</span><span class="o">/</span><span class="n">s</span><span class="p">)</span>
+<span class="w">    </span><span class="c1">## Booting kernel from Legacy Image at 80800000 ...</span>
+<span class="w">       </span><span class="n">Image</span><span class="w"> </span><span class="n">Name</span><span class="p">:</span><span class="w">   </span><span class="n">RTEMS</span>
+<span class="w">       </span><span class="n">Image</span><span class="w"> </span><span class="n">Type</span><span class="p">:</span><span class="w">   </span><span class="n">ARM</span><span class="w"> </span><span class="n">RTEMS</span><span class="w"> </span><span class="n">Kernel</span><span class="w"> </span><span class="n">Image</span><span class="w"> </span><span class="p">(</span><span class="n">gzip</span><span class="w"> </span><span class="n">compressed</span><span class="p">)</span>
+<span class="w">       </span><span class="n">Data</span><span class="w"> </span><span class="n">Size</span><span class="p">:</span><span class="w">    </span><span class="mi">58565</span><span class="w"> </span><span class="n">Bytes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">57.2</span><span class="w"> </span><span class="n">KiB</span>
+<span class="w">       </span><span class="n">Load</span><span class="w"> </span><span class="n">Address</span><span class="p">:</span><span class="w"> </span><span class="mi">80000000</span>
+<span class="w">       </span><span class="n">Entry</span><span class="w"> </span><span class="n">Point</span><span class="p">:</span><span class="w">  </span><span class="mi">80000000</span>
+<span class="w">       </span><span class="n">Verifying</span><span class="w"> </span><span class="n">Checksum</span><span class="w"> </span><span class="o">...</span><span class="w"> </span><span class="n">OK</span>
+<span class="w">       </span><span class="n">Uncompressing</span><span class="w"> </span><span class="n">Kernel</span><span class="w"> </span><span class="n">Image</span><span class="w"> </span><span class="o">...</span><span class="w"> </span><span class="n">OK</span>
+<span class="w">    </span><span class="c1">## Transferring control to RTEMS (at address 80000000) ...</span>
+
+<span class="w">    </span><span class="n">RTEMS</span><span class="w"> </span><span class="n">Beagleboard</span><span class="p">:</span><span class="w"> </span><span class="n">am335x</span><span class="o">-</span><span class="n">based</span>
+
+
+<span class="w">    </span><span class="o">***</span><span class="w"> </span><span class="n">BEGIN</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">TEST</span><span class="w"> </span><span class="n">HELLO</span><span class="w"> </span><span class="n">WORLD</span><span class="w"> </span><span class="o">***</span>
+<span class="w">    </span><span class="n">Hello</span><span class="w"> </span><span class="n">World</span>
+<span class="w">    </span><span class="o">***</span><span class="w"> </span><span class="n">END</span><span class="w"> </span><span class="n">OF</span><span class="w"> </span><span class="n">TEST</span><span class="w"> </span><span class="n">HELLO</span><span class="w"> </span><span class="n">WORLD</span><span class="w"> </span><span class="o">***</span>
+</code></pre></div>
+
+<p>The script needs to know whether it's for a Beagleboard xM or one of the
+Beaglebones. This is to know which uboot to use. It will detect this from the
+path the executable is in, so you have to specify the full path.</p>
+<h2>Running with the Beagleboard xM over JTAG</h2>
+<p>This is a slightly more advanced use. Connect a flyswatter or flyswatter2 to a Beagleboard xM and you can load and run RTEMS executables on it without any other dependencies - Beagle from scratch. No bootloader, nothing. You will need openocd for this.</p>
+<p>Still from the simscripts dir, first start openocd. I have a flywatter but you can also specify a flyswatter2.cfg:</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="c">% cd $HOME/development/rtems/rtems-src/c/src/lib/libbsp/arm/beagle/simscripts</span>
+<span class="w">    </span><span class="c">% openocd -f interface/ftdi/flyswatter.cfg -f bbxm.cfg -c&#39;reset init&#39;</span>
+</code></pre></div>
+
+<p>openocd should now be talking to your bbxm and be offering a gdb interface. Using gdb we can load and run RTEMS executables.</p>
+<p>Try it:</p>
+<div class="highlight"><pre><span></span><code>    # mkdir bbxm-gdb
+    # cd bbxm-gdb 
+    # cp ../gdbinit.bbxm .gdbinit
+    # arm-rtems4.12-gdb $HOME/development/rtems/b-beagle/arm-rtems4.12/c/beagleboardxm/testsuites/samples/ticker/ticker.exe
+    GNU gdb (GDB) 7.7
+    -snip-
+    Breakpoint 10 at 0x80015dcc: file ../../../../../../rtems-src/c/src/../../cpukit/libcsupport/src/newlibc_exit.c, line 37.
+    (gdb)
+</code></pre></div>
+
+<p>The executable is now ready to run but halted. Start with 'continue':</p>
+<div class="highlight"><pre><span></span><code>    (gdb) c
+    Continuing.
+    Breakpoint 10, _exit (status=0)
+        at ../../../../../../rtems-src/c/src/../../cpukit/libcsupport/src/newlibc_exit.c:37
+    37      {
+    (gdb)
+</code></pre></div>
+
+<p>The gdb interface is very powerful as the loading &amp; running is convenient, full debug info is available,  breakpoints all work and the build &amp; run cycle is very short.</p>
+<h2>Running the full test suite over JTAG</h2>
+<p>Doing the above in batch mode lets us run the full test suite on hardware, the only real test of course. We specify the beagleboardxm bsp insteadof the beagleboardxm_qemu bsp. This one will talk to gdb to load and run the executable each time.</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="c1"># cd $HOME/development/rtems/rtems-tools/tester</span>
+<span class="w">    </span><span class="c1"># ./rtems-test --log=bbxm-jtag.log --report-mode=all --rtems-bsp=beagleboardxm --rtems-tools=$HOME/development/rtems/4.12 $HOME/development/rtems/b-beagle/arm-rtems4.12/c/beagleboardxm</span>
+</code></pre></div>
+
+<p>That is it! Everything RTEMS on Beagle!</p>
+<h2>What I've Tested</h2>
+<p>I have personally tested everything in the above procedure, i.e.</p>
+<ol>
+<li>That building all the tools and utilities from scratch work, using the RTEMS Source Builder repository (Ubuntu + FreeBSD).</li>
+<li>That building the beaglebone and bbxm BSPs and linking them with all the testsuite programs works (Ubuntu + FreeBSD).</li>
+<li>That the beaglexm-emulating linaro qemu executes all of those tests properly, invoked using a single command line with the scripts in the RTEMS tools repository, even though not all pass currently (Ubuntu + FreeBSD).</li>
+<li>That loading &amp; running over JTAG works, both interactively with gdb and in a batch using gdb and the test runner.</li>
+<li>That running RTEMS executables using u-boot on the beaglebones from sd card work; both with and without MMU enabled at RTEMS start time.</li>
+</ol>
+<p>Additionally, I've also tested the work by Claas Ziemke rebased on
+current rtems mainline builds. My changes are in a separate commit in order
+to preserve credit where it's due.</p>
+<h2>What's next</h2>
+<p>Gee don't put me on the spot!</p>
+<p>I want to diagnose the failure reasons of the tests in the emulator and on
+hardware (different).</p>
+<p>Some form of continuous integration to keep verifying the BSP with future
+commits would be a good idea too!</p>
+<p>Also I want to get JTAG working on the beaglebone white, which would be an
+extremely powerful setup - console, power and jtag all over one USB cable?
+God have mercy.</p>
+<p>When I'm feeling brave I'd like to get the ethernet hardware working on the
+Beaglebones. But first things first. Let me know if you enjoy the BSP!</p>
+        <hr class="divider-short"/>
+        <!-- Disqus goes here -->
+        <!-- <section>
+          <h1>Comments</h1>
+          <div id="disqus_thread" aria-live="polite">Disqus goes here</div>
+        </section>
+        -->
+      </div>
+    </div>
+  </div>
+</article>
+    <footer id="footer" class="her-row">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-1">
+            <a href="/"><h4>Home</h4></a>
+          </div>
+
+          <div class="col-md-2">
+            <div class="social-icon-list">
+
+
+
+            </div>
+          </div>
+          <div class="pull-right">
+            <h4>Powered by <a href="http://blog.getpelican.com/">Pelican</a>. Designed by <a href="http://AdrianArtiles.com">Adrian Artiles</a>.</h4>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

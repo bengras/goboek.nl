@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Video of talk about real-time, embedded, software in space, and SMP threads scheduling.</title>
+  <meta name="author" content="Ben Gras">
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="description" content="Video of talk about real-time, embedded, software in space, and SMP threads scheduling. written May 17, 2014 in rtems">
+
+  <link rel="canonical" href="https://bengras.github.io/video-of-talk-about-real-time-embedded-software-in-space-and-smp-threads-scheduling.html">
+
+  <link href="https://bengras.github.io/favicon.png" rel="icon">
+
+  <link href="https://bengras.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Shrike Systems Full Atom Feed" />
+
+  <link href="https://bengras.github.io/theme/css/screen.css"  media="screen, projection" rel="stylesheet" type="text/css" />
+  <link href="https://bengras.github.io/theme/css/tomorrow.css"  media="screen, projection" rel="stylesheet" type="text/css" />
+
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+</head>
+  <body>
+    <a href="/" class="home-icon">
+      <img src="https://bengras.github.io/theme/images/home.png"/>
+    </a>
+<article role="article" class="full-single-article">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h1>Video of talk about real-time, embedded, software in space, and SMP threads scheduling.</h1>
+        <div class="meta">
+          written <time datetime="2014-05-17T22:45:00+02:00">May 17, 2014</time>
+          in <span class="categories">
+            <a href="https://bengras.github.io/tag/rtems.html">rtems</a>          </span>
+        </div>
+        <p><img alt="Embedded device" src="https://bengras.github.io/images/embedded.jpg"></p>
+<p>Embedded device.</p>
+<p>Interested in embedded systems, real-time systems, or how the
+software on satellites or on the Mars rover works, from someone
+with many years of experience in this field? Joel has a talk just
+for you.</p>
+<p><a href="http://rtemsramblings.blogspot.com/">Joel</a> from
+<a href="http://www.rtems.org/">RTEMS</a> came to the VU University in Amsterdam
+to give a talk. The audience was a big group of <a href="http://en.wikipedia.org/wiki/System_software">computer systems
+researchers</a> that
+aren't necessarily experts in the field of embedded or realtime.</p>
+<p>It turns out the audience was perfect for it because the talk is a
+great introduction to embedded and realtime; and also goes in-depth
+when it comes to the unique challenges in SMP scheduling in that
+area.</p>
+<h2>We recorded it</h2>
+<p>My friends at the office Lionel and Kees did audio and video recordings of
+it. Joel gave me his slides. I transcribed the whole talk (i.e. subtitles)
+to compensate for the audio being crummy in places. My friend Goran boosted
+bits of the audio. And I edited it all together.</p>
+<h2>Contents briefly</h2>
+<ul>
+<li>What is embedded?</li>
+<li>What is real-time?</li>
+<li>What is an operating system?</li>
+<li>What is an embedded, real-time, operating system?</li>
+<li>What is RTEMS? Where is it used?</li>
+<li>RTEMS architecture</li>
+<li>How are threads managed and scheduled in RTEMS?</li>
+<li>What changes when we start doing all this in SMP</li>
+<li>Audience questions</li>
+</ul>
+<h2>My favourite part</h2>
+<p>Is Joel strutting his stuff in response to a question:</p>
+<blockquote>
+<p>Nobody said these were easy. 
+It's multithreaded, that's why we get the big bucks, right? </p>
+</blockquote>
+<p>Watch it to see it!</p>
+<h2>Video</h2>
+<p>Here is the video. Enjoy!</p>
+<iframe class="youtube-player"
+type="text/html"
+width="640" height="385"
+src="https://www.youtube.com/embed/7Jh9PUSBPAY" allowfullscreen frameborder="0" cc_load_policy="1">
+</iframe>
+
+<h2>PS About The Subtitles</h2>
+<p>I transcribed all of the subtitles and used the YouTube interface
+to automatically do the timing for me. This was hit/miss. The first
+version matched the first 70% of the video perfectly, but always
+seemed to lose sync completely near the end - same for when the
+first 50% or all of the video transcription was complete. The next
+version had different audio and the sync was one big mess.</p>
+<p>So I used the first version, adjusted the timing for the new video
+(the SRT file with timing info was available for download from
+YouTube), and then was stuck with how to correct the timing for the
+remaining 30 minutes or so. I call it 'stuck' because I found the
+youtube interface for correcting these timings far too clumsy to
+use in this manner. All I needed was displaying the subtitle, and
+me correcting the timing by hitting a key every time I wanted a
+transition to the next! Is that so hard? I would be done in the 30
+minutes remaining of the video. It can't be done faster.
+No of course it's not so hard, but
+that doesn't mean existing tools have an obligation to anticipate
+your use case, however easy it may be. I looked around but found no
+subtitle tool, site or software that had implemented my scenario.</p>
+<p>Unfortunately the shortest path from my problem to the solution I
+imagined was using Perl. I wrote a script to read the SRT file up
+until the timing was wrong, copying over the entries to the output
+file directly. From then I made it display each subtitle,
+and wait for a keystroke for each transition; and rewrite
+the SRT to use the new timings. Somewhat to my surprise, in actual
+operation, this went perfectly the first time, start to finish.
+Except for falling asleep once or twice while watching the video
+again, it was pretty late. I'm not especially proud of the script
+but I am a bit proud of solving the problem in a completely optimal way in terms of
+execution time, with
+fairly low effort in terms of programming time.</p>
+        <hr class="divider-short"/>
+        <!-- Disqus goes here -->
+        <!-- <section>
+          <h1>Comments</h1>
+          <div id="disqus_thread" aria-live="polite">Disqus goes here</div>
+        </section>
+        -->
+      </div>
+    </div>
+  </div>
+</article>
+    <footer id="footer" class="her-row">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-1">
+            <a href="/"><h4>Home</h4></a>
+          </div>
+
+          <div class="col-md-2">
+            <div class="social-icon-list">
+
+
+
+            </div>
+          </div>
+          <div class="pull-right">
+            <h4>Powered by <a href="http://blog.getpelican.com/">Pelican</a>. Designed by <a href="http://AdrianArtiles.com">Adrian Artiles</a>.</h4>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
