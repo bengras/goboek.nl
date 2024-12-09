@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Shrike Systems</title><link href="https://bengras.github.io/" rel="alternate"></link><link href="https://bengras.github.io/atom.xml" rel="self"></link><id>https://bengras.github.io/</id><updated>2015-09-23T01:00:00+02:00</updated><entry><title>BAndroid: How Google killed two-factor authentication</title><link href="https://bengras.github.io/bandroid-how-google-killed-two-factor-authentication.html" rel="alternate"></link><published>2015-09-23T01:00:00+02:00</published><updated>2015-09-23T01:00:00+02:00</updated><author><name>Ben Gras</name></author><id>tag:bengras.github.io,2015-09-23:/bandroid-how-google-killed-two-factor-authentication.html</id><summary type="html">&lt;p&gt;A Android vulnerability called BAnderoid is found and described. This work was done by members of the VU University security research group.&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Explain Like I'm 5&lt;/h1&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Shrike Systems</title><link href="https://www.shrike-systems.com/" rel="alternate"></link><link href="https://www.shrike-systems.com/atom.xml" rel="self"></link><id>https://www.shrike-systems.com/</id><updated>2015-09-23T01:00:00+02:00</updated><entry><title>BAndroid: How Google killed two-factor authentication</title><link href="https://www.shrike-systems.com/bandroid-how-google-killed-two-factor-authentication.html" rel="alternate"></link><published>2015-09-23T01:00:00+02:00</published><updated>2015-09-23T01:00:00+02:00</updated><author><name>Ben Gras</name></author><id>tag:www.shrike-systems.com,2015-09-23:/bandroid-how-google-killed-two-factor-authentication.html</id><summary type="html">&lt;p&gt;A Android vulnerability called BAnderoid is found and described. This work was done by members of the VU University security research group.&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Explain Like I'm 5&lt;/h1&gt;
 &lt;p&gt;Do you know those banks that use text messages on your phone to double-check who you are when you want to do an transaction on their website with your account? It's extra safe, because people can't steal your phone. Wrong, it's not safe. If you're using an Android phone. It's bad. This post explains how and why.&lt;/p&gt;
 &lt;p&gt;We do this so we can pressure Google into removing the feature from Android that makes this possible.&lt;/p&gt;
 &lt;p&gt;Is that all you wanted to know? Ok. How about a FAQ?
@@ -44,7 +44,7 @@ works as designed. We want this changed.&lt;/p&gt;
 &lt;h1&gt;The Press&lt;/h1&gt;
 &lt;p&gt;The &lt;a href="http://www.volkskrant.nl/tech/lek-op-android-telefoons-door-beveiliging-google~a4089416/"&gt;Dutch national press&lt;/a&gt; &lt;a href="http://www.nu.nl/mobiel/4076742/onderzoekers-vu-ontdekken-lek-in-android-telefoons.html"&gt;was interested&lt;/a&gt;, but we want more attention for this vulnerability in order to increase the pressure on Google.&lt;/p&gt;
 &lt;h1&gt;The FAQ&lt;/h1&gt;
-&lt;p&gt;For further information, please see more description and answers to common question &lt;a href="http://www.few.vu.nl/~vvdveen/bandroid.html"&gt;in the FAQ&lt;/a&gt; maintained by Victor.&lt;/p&gt;</content><category term="Blog"></category><category term="android"></category><category term="security"></category></entry><entry><title>Exciting RTEMS GSOC projects for beagle announced</title><link href="https://bengras.github.io/exciting-rtems-gsoc-projects-for-beagle-announced.html" rel="alternate"></link><published>2015-06-03T23:50:00+02:00</published><updated>2015-06-03T23:50:00+02:00</updated><author><name>Ben Gras</name></author><id>tag:bengras.github.io,2015-06-03:/exciting-rtems-gsoc-projects-for-beagle-announced.html</id><summary type="html">&lt;p&gt;A new RTEMS project - GSOC 2015!&lt;/p&gt;</summary><content type="html">&lt;p&gt;Google Summer of Code 2015 has started. RTEMS is a participating
+&lt;p&gt;For further information, please see more description and answers to common question &lt;a href="http://www.few.vu.nl/~vvdveen/bandroid.html"&gt;in the FAQ&lt;/a&gt; maintained by Victor.&lt;/p&gt;</content><category term="Blog"></category><category term="android"></category><category term="security"></category></entry><entry><title>Exciting RTEMS GSOC projects for beagle announced</title><link href="https://www.shrike-systems.com/exciting-rtems-gsoc-projects-for-beagle-announced.html" rel="alternate"></link><published>2015-06-03T23:50:00+02:00</published><updated>2015-06-03T23:50:00+02:00</updated><author><name>Ben Gras</name></author><id>tag:www.shrike-systems.com,2015-06-03:/exciting-rtems-gsoc-projects-for-beagle-announced.html</id><summary type="html">&lt;p&gt;A new RTEMS project - GSOC 2015!&lt;/p&gt;</summary><content type="html">&lt;p&gt;Google Summer of Code 2015 has started. RTEMS is a participating
 organisation, and the set of accepted proposals was just announced
 some time ago. And it's a big deal. Not in the least for the RTEMS
 Beagle support!&lt;/p&gt;
@@ -113,7 +113,7 @@ tools and rtems source builder.&lt;/p&gt;
 to the Beagle BSP on RTEMS. The Beagle BSP has attracted quite some
 attention to RTEMS which is great. Making it more fully featured
 and within just a few months is just fantastic. I'm thrilled to be
-a part of it.&lt;/p&gt;</content><category term="Blog"></category><category term="rtems"></category><category term="gsoc"></category></entry><entry><title>Minix 3.3.0 is released, is unforking, and is visiting EuroBSDcon 2014</title><link href="https://bengras.github.io/minix-330-is-released-is-unforking-and-is-visiting-eurobsdcon-2014.html" rel="alternate"></link><published>2014-09-24T23:50:00+02:00</published><updated>2014-09-24T23:50:00+02:00</updated><author><name>Ben Gras</name></author><id>tag:bengras.github.io,2014-09-24:/minix-330-is-released-is-unforking-and-is-visiting-eurobsdcon-2014.html</id><summary type="html">&lt;p&gt;Some background on the Minix 3.3.0 release and the Minix delegation to EuroBSDcon 2014 in Sofia.&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Minix 3.3.0 and building up to that&lt;/h1&gt;
+a part of it.&lt;/p&gt;</content><category term="Blog"></category><category term="rtems"></category><category term="gsoc"></category></entry><entry><title>Minix 3.3.0 is released, is unforking, and is visiting EuroBSDcon 2014</title><link href="https://www.shrike-systems.com/minix-330-is-released-is-unforking-and-is-visiting-eurobsdcon-2014.html" rel="alternate"></link><published>2014-09-24T23:50:00+02:00</published><updated>2014-09-24T23:50:00+02:00</updated><author><name>Ben Gras</name></author><id>tag:www.shrike-systems.com,2014-09-24:/minix-330-is-released-is-unforking-and-is-visiting-eurobsdcon-2014.html</id><summary type="html">&lt;p&gt;Some background on the Minix 3.3.0 release and the Minix delegation to EuroBSDcon 2014 in Sofia.&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Minix 3.3.0 and building up to that&lt;/h1&gt;
 &lt;p&gt;A little over a week ago, Minix 3.3.0 &lt;a href="http://www.minix3.org/330.html"&gt;was
 announced&lt;/a&gt;.  It is the culmination
 of a lot of hard work over the past 1.5 year or so.&lt;/p&gt;
@@ -146,8 +146,8 @@ meeting in real life at EuroBSDcon 2014. AST is
 &lt;a href="http://2014.eurobsdcon.org/talks-and-schedule/talks/#AndrewTanenbaum"&gt;giving a talk&lt;/a&gt; with technical updates on our journey in BSD land. Myself and Lionel
 are there. In fact I am typing this while about to board my flight to Sofia.&lt;/p&gt;
 &lt;p&gt;I'm looking forward greatly to the conference, attending talks and meeting
-BSD folks. See you all there!&lt;/p&gt;</content><category term="Blog"></category><category term="minix"></category><category term="bsd"></category></entry><entry><title>Beagleboard xM, Beaglebone black and everything else RTEMS on the Beagles</title><link href="https://bengras.github.io/beagleboard-xm-beaglebone-black-and-everything-else-rtems-on-the-beagles.html" rel="alternate"></link><published>2014-07-22T09:15:00+02:00</published><updated>2014-07-22T09:15:00+02:00</updated><author><name>Ben Gras</name></author><id>tag:bengras.github.io,2014-07-22:/beagleboard-xm-beaglebone-black-and-everything-else-rtems-on-the-beagles.html</id><summary type="html">&lt;p&gt;How to get everything RTEMS running on everything Beagle from scratch.&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Everything about RTEMS on Beagleboards &amp;amp; Beaglebones&lt;/h1&gt;
-&lt;p&gt;&lt;img alt="Beagleboard" src="https://bengras.github.io/images/beagle.jpg"&gt;&lt;/p&gt;
+BSD folks. See you all there!&lt;/p&gt;</content><category term="Blog"></category><category term="minix"></category><category term="bsd"></category></entry><entry><title>Beagleboard xM, Beaglebone black and everything else RTEMS on the Beagles</title><link href="https://www.shrike-systems.com/beagleboard-xm-beaglebone-black-and-everything-else-rtems-on-the-beagles.html" rel="alternate"></link><published>2014-07-22T09:15:00+02:00</published><updated>2014-07-22T09:15:00+02:00</updated><author><name>Ben Gras</name></author><id>tag:www.shrike-systems.com,2014-07-22:/beagleboard-xm-beaglebone-black-and-everything-else-rtems-on-the-beagles.html</id><summary type="html">&lt;p&gt;How to get everything RTEMS running on everything Beagle from scratch.&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Everything about RTEMS on Beagleboards &amp;amp; Beaglebones&lt;/h1&gt;
+&lt;p&gt;&lt;img alt="Beagleboard" src="https://www.shrike-systems.com/images/beagle.jpg"&gt;&lt;/p&gt;
 &lt;p&gt;Welcome to the 10th post!&lt;/p&gt;
 &lt;p&gt;(Updated fri sep 25 2015 with 'requirements' section, especially for the console cable warning. you need a seperate cable for the BBB console on rtems. Shortly after: 64bit ubuntu vs 32bit ubuntu.)&lt;/p&gt;
 &lt;p&gt;(Updated sun dec 27 2015 with changes to make RTEMS 4.12 work.)&lt;/p&gt;
@@ -415,7 +415,7 @@ commits would be a good idea too!&lt;/p&gt;
 extremely powerful setup - console, power and jtag all over one USB cable?
 God have mercy.&lt;/p&gt;
 &lt;p&gt;When I'm feeling brave I'd like to get the ethernet hardware working on the
-Beaglebones. But first things first. Let me know if you enjoy the BSP!&lt;/p&gt;</content><category term="Blog"></category><category term="beagle"></category><category term="beaglebone"></category><category term="beagleboard"></category><category term="rtems"></category></entry><entry><title>Nice solution to use PC as a Sonos audio source.</title><link href="https://bengras.github.io/nice-solution-to-use-pc-as-a-sonos-audio-source.html" rel="alternate"></link><published>2014-05-23T15:46:00+02:00</published><updated>2014-05-23T15:46:00+02:00</updated><author><name>Ben Gras</name></author><id>tag:bengras.github.io,2014-05-23:/nice-solution-to-use-pc-as-a-sonos-audio-source.html</id><summary type="html"></summary><content type="html">&lt;p&gt;&lt;img alt="Embedded device" src="https://bengras.github.io/images/Sonos-company.png"&gt;&lt;/p&gt;
+Beaglebones. But first things first. Let me know if you enjoy the BSP!&lt;/p&gt;</content><category term="Blog"></category><category term="beagle"></category><category term="beaglebone"></category><category term="beagleboard"></category><category term="rtems"></category></entry><entry><title>Nice solution to use PC as a Sonos audio source.</title><link href="https://www.shrike-systems.com/nice-solution-to-use-pc-as-a-sonos-audio-source.html" rel="alternate"></link><published>2014-05-23T15:46:00+02:00</published><updated>2014-05-23T15:46:00+02:00</updated><author><name>Ben Gras</name></author><id>tag:www.shrike-systems.com,2014-05-23:/nice-solution-to-use-pc-as-a-sonos-audio-source.html</id><summary type="html"></summary><content type="html">&lt;p&gt;&lt;img alt="Embedded device" src="https://www.shrike-systems.com/images/Sonos-company.png"&gt;&lt;/p&gt;
 &lt;p&gt;I'm a Sonos fan.&lt;/p&gt;
 &lt;p&gt;I'm a big Sonos fan. The devices are quite costly so part of me is
 &lt;em&gt;forced&lt;/em&gt; to be a big Sonos fan. But still I think the abilities,
@@ -432,7 +432,7 @@ close and a really nice feature too.&lt;/p&gt;
 found on a &lt;a href="https://ask.sonos.com/sonos/topics/allow_sonos_to_monitor_what_computer_is_streaming"&gt;Sonos forum post&lt;/a&gt;: install
 &lt;a href="http://www.streamwhatyouhear.com/"&gt;streamwhatyouhear&lt;/a&gt;, make it
 do a HTTP stream, and add that HTTP stream as a radio station in your
-Sonos controller. Then play that station, and presto. Works really well.&lt;/p&gt;</content><category term="Blog"></category><category term="sonos"></category></entry><entry><title>Video of talk about real-time, embedded, software in space, and SMP threads scheduling.</title><link href="https://bengras.github.io/video-of-talk-about-real-time-embedded-software-in-space-and-smp-threads-scheduling.html" rel="alternate"></link><published>2014-05-17T22:45:00+02:00</published><updated>2014-05-17T22:45:00+02:00</updated><author><name>Ben Gras</name></author><id>tag:bengras.github.io,2014-05-17:/video-of-talk-about-real-time-embedded-software-in-space-and-smp-threads-scheduling.html</id><summary type="html">&lt;p&gt;Dr Joel of RTEMS came to visit the VU University and gave a great talk on Embedded, Realtime, RTEMS and SMP. I made a video of it.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Embedded device" src="https://bengras.github.io/images/embedded.jpg"&gt;&lt;/p&gt;
+Sonos controller. Then play that station, and presto. Works really well.&lt;/p&gt;</content><category term="Blog"></category><category term="sonos"></category></entry><entry><title>Video of talk about real-time, embedded, software in space, and SMP threads scheduling.</title><link href="https://www.shrike-systems.com/video-of-talk-about-real-time-embedded-software-in-space-and-smp-threads-scheduling.html" rel="alternate"></link><published>2014-05-17T22:45:00+02:00</published><updated>2014-05-17T22:45:00+02:00</updated><author><name>Ben Gras</name></author><id>tag:www.shrike-systems.com,2014-05-17:/video-of-talk-about-real-time-embedded-software-in-space-and-smp-threads-scheduling.html</id><summary type="html">&lt;p&gt;Dr Joel of RTEMS came to visit the VU University and gave a great talk on Embedded, Realtime, RTEMS and SMP. I made a video of it.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Embedded device" src="https://www.shrike-systems.com/images/embedded.jpg"&gt;&lt;/p&gt;
 &lt;p&gt;Embedded device.&lt;/p&gt;
 &lt;p&gt;Interested in embedded systems, real-time systems, or how the
 software on satellites or on the Mars rover works, from someone
@@ -510,14 +510,14 @@ Except for falling asleep once or twice while watching the video
 again, it was pretty late. I'm not especially proud of the script
 but I am a bit proud of solving the problem in a completely optimal way in terms of
 execution time, with
-fairly low effort in terms of programming time.&lt;/p&gt;</content><category term="Blog"></category><category term="rtems"></category></entry><entry><title>LLVM Bitcode, Minix Liveupdate, and Gold Bugs</title><link href="https://bengras.github.io/llvm-bitcode-minix-liveupdate-and-gold-bugs.html" rel="alternate"></link><published>2014-05-04T22:45:00+02:00</published><updated>2014-05-04T22:45:00+02:00</updated><author><name>Ben Gras</name></author><id>tag:bengras.github.io,2014-05-04:/llvm-bitcode-minix-liveupdate-and-gold-bugs.html</id><summary type="html">&lt;p&gt;A story about the powerful possibilities of building code using LLVM bitcode; and a binutils gold bug I came across and fixed.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Lightning" src="https://bengras.github.io/images/lightning.jpg"&gt;&lt;/p&gt;
+fairly low effort in terms of programming time.&lt;/p&gt;</content><category term="Blog"></category><category term="rtems"></category></entry><entry><title>LLVM Bitcode, Minix Liveupdate, and Gold Bugs</title><link href="https://www.shrike-systems.com/llvm-bitcode-minix-liveupdate-and-gold-bugs.html" rel="alternate"></link><published>2014-05-04T22:45:00+02:00</published><updated>2014-05-04T22:45:00+02:00</updated><author><name>Ben Gras</name></author><id>tag:www.shrike-systems.com,2014-05-04:/llvm-bitcode-minix-liveupdate-and-gold-bugs.html</id><summary type="html">&lt;p&gt;A story about the powerful possibilities of building code using LLVM bitcode; and a binutils gold bug I came across and fixed.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="Lightning" src="https://www.shrike-systems.com/images/lightning.jpg"&gt;&lt;/p&gt;
 &lt;p&gt;The power of LLVM. Image: Rainer Knäpper&lt;/p&gt;
 &lt;p&gt;Interested in adding a whole new dimension to existing everyday C code?
 Or what it's like to be among the first of projects to be trying such
 things with new tools and technologies, and having to fix a linker bug
 to do it? Read on.&lt;/p&gt;
 &lt;h2&gt;Introduction to LLVM&lt;/h2&gt;
-&lt;p&gt;&lt;img alt="LLVM Dragon" src="https://bengras.github.io/images/llvm-dragon-small.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="LLVM Dragon" src="https://www.shrike-systems.com/images/llvm-dragon-small.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://www.llvm.org/"&gt;LLVM&lt;/a&gt; is a full compiler infrastructure made to not
 only compile various languages to various kinds of machine code, but also work with
 code in other ways using re-usable components. Examples: an editor
@@ -598,7 +598,7 @@ more projects in Minix that Cristiano is working on - memory
 checkpointing for crash recovery, address space layout randomization,
 and fault injection.&lt;/p&gt;
 &lt;h2&gt;Gold bugs&lt;/h2&gt;
-&lt;p&gt;&lt;img alt="Gold bug" src="https://bengras.github.io/images/goldbug.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Gold bug" src="https://www.shrike-systems.com/images/goldbug.jpg"&gt;&lt;/p&gt;
 &lt;p&gt;To link bitcode files and perform transformations on them at link
 time, the &lt;a href="http://en.wikipedia.org/wiki/Gold_%28linker%29"&gt;Binutils Gold linker&lt;/a&gt;
 is required. Unfortunately we at Minix ran into a few problems and bugs when linking
@@ -618,7 +618,7 @@ experimentation on.&lt;/p&gt;
 &lt;h2&gt;Acknowledgements&lt;/h2&gt;
 &lt;p&gt;My thanks to &lt;a href="http://www.cs.vu.nl/~giuffrida/"&gt;Cristiano Giuffrida&lt;/a&gt; who
 kindly reviewed a draft of this post and substantially improved upon it.
-Any errors are still mine of course.&lt;/p&gt;</content><category term="Blog"></category><category term="llvm"></category><category term="minix"></category></entry><entry><title>Beagle from scratch, or: adventures in JTAG, part 1</title><link href="https://bengras.github.io/beagle-from-scratch-or-adventures-in-jtag-part-1.html" rel="alternate"></link><published>2014-04-26T15:11:00+02:00</published><updated>2014-04-26T15:11:00+02:00</updated><author><name>Ben Gras</name></author><id>tag:bengras.github.io,2014-04-26:/beagle-from-scratch-or-adventures-in-jtag-part-1.html</id><summary type="html">&lt;p&gt;Executing code on a BeagleBoard XM without any bootcode.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Below is a story of what I've learned about what it takes to
+Any errors are still mine of course.&lt;/p&gt;</content><category term="Blog"></category><category term="llvm"></category><category term="minix"></category></entry><entry><title>Beagle from scratch, or: adventures in JTAG, part 1</title><link href="https://www.shrike-systems.com/beagle-from-scratch-or-adventures-in-jtag-part-1.html" rel="alternate"></link><published>2014-04-26T15:11:00+02:00</published><updated>2014-04-26T15:11:00+02:00</updated><author><name>Ben Gras</name></author><id>tag:www.shrike-systems.com,2014-04-26:/beagle-from-scratch-or-adventures-in-jtag-part-1.html</id><summary type="html">&lt;p&gt;Executing code on a BeagleBoard XM without any bootcode.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Below is a story of what I've learned about what it takes to
 boot a &lt;a href="http://beagleboard.org/Products/BeagleBoard-xM"&gt;Beagleboard&lt;/a&gt;.&lt;/p&gt;
 &lt;h2&gt;BeagleBoard XM on reset - a barren wasteland&lt;/h2&gt;
 &lt;p&gt;Without boot code such as &lt;a href="http://www.denx.de/wiki/U-Boot"&gt;U-Boot&lt;/a&gt;
@@ -646,7 +646,7 @@ and execute it. Full U-Boot has much more peripheral support and
 other supporting features to load the next step, i.e. the
 operating system or application.&lt;/p&gt;
 &lt;h2&gt;What we want so we can test RTEMS&lt;/h2&gt;
-&lt;p&gt;&lt;a href="https://bengras.github.io/back-to-school-rtems-class.html"&gt;As mentioned&lt;/a&gt;, I am working on a
+&lt;p&gt;&lt;a href="https://www.shrike-systems.com/back-to-school-rtems-class.html"&gt;As mentioned&lt;/a&gt;, I am working on a
 &lt;a href="http://www.rtems.org/wiki/index.php/Board_Support_Packages"&gt;BSP&lt;/a&gt; for the
 &lt;a href="http://www.beagleboard.org"&gt;Beagle&lt;/a&gt; family of products for
 &lt;a href="http://www.rtems.org"&gt;RTEMS&lt;/a&gt;. In other words, a port of RTEMS to the
@@ -685,7 +685,7 @@ also setting the proper breakpoints to let the tests pass.&lt;/p&gt;
 &lt;p&gt;I will post a full tutorial on how to build and run everything in the future.&lt;/p&gt;
 &lt;h2&gt;Running RTEMS tests&lt;/h2&gt;
 &lt;p&gt;The next step is to build and run all RTEMS tests on the Beagleboard XM
-unattended. I will also post an update on how the tests are running.&lt;/p&gt;</content><category term="Blog"></category><category term="beagle"></category><category term="jtag"></category><category term="rtems"></category></entry><entry><title>Back to school - RTEMS Class</title><link href="https://bengras.github.io/back-to-school-rtems-class.html" rel="alternate"></link><published>2014-04-22T13:31:00+02:00</published><updated>2014-04-22T13:31:00+02:00</updated><author><name>Ben Gras</name></author><id>tag:bengras.github.io,2014-04-22:/back-to-school-rtems-class.html</id><summary type="html">&lt;p&gt;I followed a class on the RTEMS OS and wrote a BSP for the Beagles for it in about that time.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://bengras.github.io/i-want-to-get-into-rtems.html"&gt;As mentioned&lt;/a&gt;, I am interested in
+unattended. I will also post an update on how the tests are running.&lt;/p&gt;</content><category term="Blog"></category><category term="beagle"></category><category term="jtag"></category><category term="rtems"></category></entry><entry><title>Back to school - RTEMS Class</title><link href="https://www.shrike-systems.com/back-to-school-rtems-class.html" rel="alternate"></link><published>2014-04-22T13:31:00+02:00</published><updated>2014-04-22T13:31:00+02:00</updated><author><name>Ben Gras</name></author><id>tag:www.shrike-systems.com,2014-04-22:/back-to-school-rtems-class.html</id><summary type="html">&lt;p&gt;I followed a class on the RTEMS OS and wrote a BSP for the Beagles for it in about that time.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://www.shrike-systems.com/i-want-to-get-into-rtems.html"&gt;As mentioned&lt;/a&gt;, I am interested in
 diversifying my OS knowledge further.
 &lt;a href="http://rtemsramblings.blogspot.nl/"&gt;Joel&lt;/a&gt; mentioned he was
 teaching an &lt;a href="http://www.rtems.org"&gt;RTEMS&lt;/a&gt;
@@ -698,13 +698,13 @@ really.  It was a great experience. For many reasons!&lt;/p&gt;
 &lt;p&gt;Both usage and its internal structure, and real-time systems in general.
 I had done some preparation beforehand so that I would get the most out of
 the class, but both were something of a first for me.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Joel teaching" src="https://bengras.github.io/images/joel-teach.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Joel teaching" src="https://www.shrike-systems.com/images/joel-teach.jpg"&gt;&lt;/p&gt;
 &lt;p&gt;Pictured above: Joel in front of the projection screen.&lt;/p&gt;
 &lt;h2&gt;Two: I got to socialize with Joel&lt;/h2&gt;
 &lt;p&gt;He lives in the US so we don't see each other much. It was great to
 catch up a bit and talk about subjects ranging from technical RTEMS
 subjects, to life and happiness and such things in general.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Having a beer with Joel" src="https://bengras.github.io/images/socialize.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Having a beer with Joel" src="https://www.shrike-systems.com/images/socialize.jpg"&gt;&lt;/p&gt;
 &lt;p&gt;Left: me. Right: Joel.&lt;/p&gt;
 &lt;p&gt;We all know socializing is simply code for drinking
 beer together, no?&lt;/p&gt;
@@ -721,11 +721,11 @@ timeframe significantly!&lt;/p&gt;
 "on the last day" I got it working. I really enjoyed Joel demonstrating
 it to the rest of the class! We hooked up my laptop to the projector
 and went to town.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Joel demonstrating RTEMS on my beaglebone black" src="https://bengras.github.io/images/demo.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Joel demonstrating RTEMS on my beaglebone black" src="https://www.shrike-systems.com/images/demo.jpg"&gt;&lt;/p&gt;
 &lt;p&gt;Pictured: Joel demonstrating RTEMS running on the Beaglebone Black that
 I brought with me.&lt;/p&gt;
 &lt;p&gt;And, also on the last day:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Joel demonstrating RTEMS on my beaglebone black" src="https://bengras.github.io/images/cert.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Joel demonstrating RTEMS on my beaglebone black" src="https://www.shrike-systems.com/images/cert.jpg"&gt;&lt;/p&gt;
 &lt;p&gt;I got a certificate! It really did feel like going back to school and it
 was quite a nice experience.&lt;/p&gt;
 &lt;h2&gt;Where to go&lt;/h2&gt;
@@ -754,7 +754,7 @@ effort to merge this BSP with mainline is that I am working with
 &lt;a href="https://github.com/kiwichris"&gt;Chris&lt;/a&gt; to get the RTEMS executable
 running from scratch using
 &lt;a href="http://en.wikipedia.org/wiki/Joint_Test_Action_Group"&gt;JTAG&lt;/a&gt;.  But
-that is a topic of another, similarly exciting, post.&lt;/p&gt;</content><category term="Blog"></category><category term="beagle"></category><category term="rtems"></category></entry><entry><title>Minix builds on 22 Linux distros thanks to NetBSD's buildsystem</title><link href="https://bengras.github.io/minix-builds-on-22-linux-distros-thanks-to-netbsds-buildsystem.html" rel="alternate"></link><published>2014-04-15T14:19:00+02:00</published><updated>2014-04-15T14:19:00+02:00</updated><author><name>Ben Gras</name></author><id>tag:bengras.github.io,2014-04-15:/minix-builds-on-22-linux-distros-thanks-to-netbsds-buildsystem.html</id><summary type="html">&lt;p&gt;I tried the Minix build procedure in many environments with relatively minimal effort using OpenSuse's build farm. Minix builds from scratch on many different OSes and Linux distributions. This is a testament to the power of its buildsystem, taken from NetBSD.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Why read on? To learn how &lt;a href="https://build.opensuse.org/package/show/home:beng-nl/Minix3"&gt;Minix could effortlessly crossbuild from all these environments&lt;/a&gt;.&lt;/p&gt;
+that is a topic of another, similarly exciting, post.&lt;/p&gt;</content><category term="Blog"></category><category term="beagle"></category><category term="rtems"></category></entry><entry><title>Minix builds on 22 Linux distros thanks to NetBSD's buildsystem</title><link href="https://www.shrike-systems.com/minix-builds-on-22-linux-distros-thanks-to-netbsds-buildsystem.html" rel="alternate"></link><published>2014-04-15T14:19:00+02:00</published><updated>2014-04-15T14:19:00+02:00</updated><author><name>Ben Gras</name></author><id>tag:www.shrike-systems.com,2014-04-15:/minix-builds-on-22-linux-distros-thanks-to-netbsds-buildsystem.html</id><summary type="html">&lt;p&gt;I tried the Minix build procedure in many environments with relatively minimal effort using OpenSuse's build farm. Minix builds from scratch on many different OSes and Linux distributions. This is a testament to the power of its buildsystem, taken from NetBSD.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Why read on? To learn how &lt;a href="https://build.opensuse.org/package/show/home:beng-nl/Minix3"&gt;Minix could effortlessly crossbuild from all these environments&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Software that always works is pretty hard to achieve. It depends
 on its own state and the state of its environment. Its own state
 is hard enough to manage as it is. That of the environment, however,
@@ -811,7 +811,7 @@ bootstrap going, but then 22 distros built Minix without changing
 the build system itself; &lt;a href="https://build.opensuse.org/package/show/home:beng-nl/Minix3"&gt;here are the
 results&lt;/a&gt;. Well
 done NetBSD, and the Minix guys that work hard to cleanly integrate
-it.&lt;/p&gt;</content><category term="Blog"></category><category term="minix"></category><category term="justworks"></category></entry><entry><title>So I installed Android on the Beaglebone Black</title><link href="https://bengras.github.io/so-i-installed-android-on-the-beaglebone-black.html" rel="alternate"></link><published>2014-04-13T01:19:00+02:00</published><updated>2014-04-13T01:19:00+02:00</updated><author><name>Ben Gras</name></author><id>tag:bengras.github.io,2014-04-13:/so-i-installed-android-on-the-beaglebone-black.html</id><summary type="html">&lt;p&gt;The upcoming Android space shooter running on the Beaglebone Black for the first time.&lt;/p&gt;</summary><content type="html">&lt;p&gt;My friend Goran is doing a great job at writing a space shooter game
+it.&lt;/p&gt;</content><category term="Blog"></category><category term="minix"></category><category term="justworks"></category></entry><entry><title>So I installed Android on the Beaglebone Black</title><link href="https://www.shrike-systems.com/so-i-installed-android-on-the-beaglebone-black.html" rel="alternate"></link><published>2014-04-13T01:19:00+02:00</published><updated>2014-04-13T01:19:00+02:00</updated><author><name>Ben Gras</name></author><id>tag:www.shrike-systems.com,2014-04-13:/so-i-installed-android-on-the-beaglebone-black.html</id><summary type="html">&lt;p&gt;The upcoming Android space shooter running on the Beaglebone Black for the first time.&lt;/p&gt;</summary><content type="html">&lt;p&gt;My friend Goran is doing a great job at writing a space shooter game
 for Android. I like trying out new versions of his game on my phone
 and on any other Android devices I can find to support him.&lt;/p&gt;
 &lt;p&gt;I'm also a big lover of the line of Beagle ARM devices of course.
@@ -826,7 +826,7 @@ different devices. And to see the HDMI out on my BBB working on my
 beamer in my living room.&lt;/p&gt;
 &lt;p&gt;Here is a teaser of the android install booting.. the game isn't released
 yet after all!&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Game running on my beamer" src="https://bengras.github.io/images/android-game.jpg"&gt;&lt;/p&gt;</content><category term="Blog"></category><category term="android"></category><category term="bbb"></category></entry><entry><title>I want to get into RTEMS</title><link href="https://bengras.github.io/i-want-to-get-into-rtems.html" rel="alternate"></link><published>2014-04-10T02:46:00+02:00</published><updated>2014-04-10T02:46:00+02:00</updated><author><name>Ben Gras</name></author><id>tag:bengras.github.io,2014-04-10:/i-want-to-get-into-rtems.html</id><summary type="html">&lt;p&gt;I really want to know everything about RTEMS.&lt;/p&gt;</summary><content type="html">&lt;p&gt;My day job is programming Minix. It has been for over 9 years.  I've
+&lt;p&gt;&lt;img alt="Game running on my beamer" src="https://www.shrike-systems.com/images/android-game.jpg"&gt;&lt;/p&gt;</content><category term="Blog"></category><category term="android"></category><category term="bbb"></category></entry><entry><title>I want to get into RTEMS</title><link href="https://www.shrike-systems.com/i-want-to-get-into-rtems.html" rel="alternate"></link><published>2014-04-10T02:46:00+02:00</published><updated>2014-04-10T02:46:00+02:00</updated><author><name>Ben Gras</name></author><id>tag:www.shrike-systems.com,2014-04-10:/i-want-to-get-into-rtems.html</id><summary type="html">&lt;p&gt;I really want to know everything about RTEMS.&lt;/p&gt;</summary><content type="html">&lt;p&gt;My day job is programming Minix. It has been for over 9 years.  I've
 come to love it and systems programming in general. I've decided I
 want to develop myself further in the field of systems programming.
 It seems embedded systems is where commercial value and systems
@@ -837,7 +837,7 @@ that it runs on highly safety- and reliability-critical systems
 from NASA, JPL, ESA, CERN, BMW and many others we do and don't
 know about. I'm in contact with them a lot lately in order to
 learn more and contribute. RTEMS is the opposite of Minix, and that is a pleasant
-change of pace and scenery really.&lt;/p&gt;</content><category term="Blog"></category><category term="rtems"></category></entry><entry><title>First post</title><link href="https://bengras.github.io/first-post.html" rel="alternate"></link><published>2014-04-10T02:36:00+02:00</published><updated>2014-04-10T02:36:00+02:00</updated><author><name>Ben Gras</name></author><id>tag:bengras.github.io,2014-04-10:/first-post.html</id><summary type="html">&lt;p&gt;I have started a blog and this is the first post for now.&lt;/p&gt;</summary><content type="html">&lt;p&gt;This is the first post on my new blog. I decided I wanted a blog after
+change of pace and scenery really.&lt;/p&gt;</content><category term="Blog"></category><category term="rtems"></category></entry><entry><title>First post</title><link href="https://www.shrike-systems.com/first-post.html" rel="alternate"></link><published>2014-04-10T02:36:00+02:00</published><updated>2014-04-10T02:36:00+02:00</updated><author><name>Ben Gras</name></author><id>tag:www.shrike-systems.com,2014-04-10:/first-post.html</id><summary type="html">&lt;p&gt;I have started a blog and this is the first post for now.&lt;/p&gt;</summary><content type="html">&lt;p&gt;This is the first post on my new blog. I decided I wanted a blog after
 all.&lt;/p&gt;
 &lt;p&gt;And that I wanted a simple, robust way to make a good looking site
 from simple input, that supports the blog format, and so came across
