@@ -3,9 +3,9 @@ locale.setlocale(locale.LC_TIME, 'en_US.UTF-8')  # Set to English locale
 
 DEFAULT_LANG = 'en'
 AUTHOR = 'Ben Gras'
-OUTPUT_PATH = '/var/www/www.shrike-systems.com'
+OUTPUT_PATH = 'docs/'
 PATH = 'content'
-THEME = "/home/beng/pelican-themes/mediumfox"
+THEME = "pelican-themes/mediumfox"
 SITEURL = 'https://www.shrike-systems.com/'
 SITENAME = 'Shrike Systems'
 TIMEZONE = 'CET'
