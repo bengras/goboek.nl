@@ -1,4 +1,5 @@
 python3 -mvenv venv
 ./venv/bin/pip install pelican
 ./venv/bin/pip install 'pelican[markdown]'
-./venv/bin/pelican content -s pelicanconf.py
+
+bash deploy.sh
