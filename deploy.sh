@@ -1,4 +1,5 @@
 set -e
+rm -rf docs
 git add -u . || true
 git commit -mcommit || true
 git pull --rebase
