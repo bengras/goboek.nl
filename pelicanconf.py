@@ -6,6 +6,7 @@ AUTHOR = 'René Kuiper'
 OUTPUT_PATH = 'docs/'
 PATH = 'content'
 THEME = "pelican-themes/mediumfox"
+THEME = 'bootstrap2'
 SITEURL = 'https://www.goboek.nl'
 SITENAME = 'Gezond Ouder Worden'
 TIMEZONE = 'CET'
