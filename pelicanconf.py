@@ -1,16 +1,16 @@
 import locale
 locale.setlocale(locale.LC_TIME, 'en_US.UTF-8')  # Set to English locale
 
-DEFAULT_LANG = 'en'
-AUTHOR = 'Ben Gras'
+DEFAULT_LANG = 'nl'
+AUTHOR = 'René Kuiper'
 OUTPUT_PATH = 'docs/'
 PATH = 'content'
 THEME = "pelican-themes/mediumfox"
-SITEURL = 'https://www.shrike-systems.com'
-SITENAME = 'Shrike Systems'
+SITEURL = 'https://www.goboek.nl'
+SITENAME = 'Gezond Ouder Worden'
 TIMEZONE = 'CET'
 DELETE_OUTPUT_DIRECTORY = True
 FEED_ATOM = 'atom.xml'
 FEED_RSS = 'rss.xml'
-TWITTER_USERNAME = 'bjg'
 STATIC_PATHS = [ 'images' , 'files' ]
+LOCALE = ('nl_NL.UTF-8',)  # Use Dutch locale
