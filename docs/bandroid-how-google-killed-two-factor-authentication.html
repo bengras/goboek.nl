@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>BAndroid: How Google killed two-factor authentication</title>
+  <meta name="author" content="René Kuiper">
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="description" content="BAndroid: How Google killed two-factor authentication written september 23, 2015 in android,security">
+
+  <link rel="canonical" href="https://www.goboek.nl/bandroid-how-google-killed-two-factor-authentication.html">
+
+  <link href="https://www.goboek.nl/favicon.png" rel="icon">
+
+  <link href="https://www.goboek.nl/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Gezond Ouder Worden Full Atom Feed" />
+
+  <link href="https://www.goboek.nl/theme/css/screen.css"  media="screen, projection" rel="stylesheet" type="text/css" />
+  <link href="https://www.goboek.nl/theme/css/tomorrow.css"  media="screen, projection" rel="stylesheet" type="text/css" />
+
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+</head>
+  <body>
+    <a href="/" class="home-icon">
+      <img src="https://www.goboek.nl/theme/images/home.png"/>
+    </a>
+<article role="article" class="full-single-article">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h1>BAndroid: How Google killed two-factor authentication</h1>
+        <div class="meta">
+          written <time datetime="2015-09-23T01:00:00+02:00">september 23, 2015</time>
+          in <span class="categories">
+            <a href="https://www.goboek.nl/tag/android.html">android</a>,            <a href="https://www.goboek.nl/tag/security.html">security</a>          </span>
+        </div>
+        <h1>Explain Like I'm 5</h1>
+<p>Do you know those banks that use text messages on your phone to double-check who you are when you want to do an transaction on their website with your account? It's extra safe, because people can't steal your phone. Wrong, it's not safe. If you're using an Android phone. It's bad. This post explains how and why.</p>
+<p>We do this so we can pressure Google into removing the feature from Android that makes this possible.</p>
+<p>Is that all you wanted to know? Ok. How about a FAQ?
+<a href="http://www.few.vu.nl/~vvdveen/bandroid.html">Here is the FAQ</a></p>
+<p>How about a video of a talk describing the problem in ful detail?</p>
+<iframe class="youtube-player"
+type="text/html"
+width="640" height="385"
+src="https://www.youtube.com/embed/7WiE0cpsxv4" allowfullscreen frameborder="0" cc_load_policy="1">
+</iframe>
+
+<h1>What?</h1>
+<p>This post explains an interesting digital security development: the weakening of two-factor authentication using SMS in Android phones. I want to give more exposure to this bug in order to pressure Google to remove the feature that makes this vulnerability possible.</p>
+<p>Attackers can bypass SMS-based two-factor authentication on Android once the browser is hacked. They can do this by intercepting the SMS as it comes in, and then forwarding it to the attacker. The user never notices. There are big financial institutions that depend on this being secure. </p>
+<h1>The Research Group</h1>
+<p>At the VU University where I work, I am part of a computer systems security research group led by <a href="http://www.cs.vu.nl/~herbertb">Herbert Bos</a>. In 2014, one of the researchers, Victor van der Veen, discovered an interesting Android vulnerability that allows an attacker, with only a little manipulating of the user, to bypass two-factor authentication using SMS.</p>
+<h1>Background: Two-Factor Authentication</h1>
+<p>In the digital security world, there is a lot to do about authentication - proving who you are. That's good, because otherwise someone else could use systems as if they were you (such as: transfer your money away). We often talk about 3 factors that can be supplied to a system to prove your identity:</p>
+<ol>
+<li>something you know (such as: a password, or your mother's maiden name)</li>
+<li>something you have (such as: a metal key, or your phone)</li>
+<li>something you are (such as: your fingerprint, or the pattern on your iris)</li>
+</ol>
+<p>Many systems are content with just asking your login name and password. But passwords aren't really that great - if someone guesses it or steals it, it can be used to impersonate you. There's no warning that this has happened. And because everything is networked, the opportunities for people to steal your passwords are all over the place.</p>
+<p>If only a password is required, we call this one-factor authentication. If we require something else as well, we call this two-factor authentication. Such as: a password and a digital card. Or, a password and your phone. You can prove you have your own phone by typing in a SMS code that is sent to you. Someone who steals your password can't do this, because he hasn't stolen your phone and that's not easy to do over the internet.</p>
+<p>Because this raises the bar to forge someone's identity enormously, the more sensitive systems such as banks or the Dutch national Digital ID system <a href="https://www.digid.nl/">DigiD</a> require two factor authentication. Fortunately!</p>
+<h1>The Attack</h1>
+<p>Victor has devised a way that eliminates this factor. The scenario is as follows: somebody hacks into your browser. This is possible with many of the past, present and future security bugs in browsers. This is precisely the scenario that two-factor authentication is designed to thwart. What happens next?</p>
+<ul>
+<li>The malicious code is able to forcibly install an app with any permissions on your Android phone remotely using your Google account. It can use your Google account because the browser can. You won't even notice the app is there.</li>
+<li>The app then has to be activated. This can be done by some very light manipulation, also without the user noticing. E.g., let the user click on a attacker-crafted url, in any context whatsoever, in the phone.</li>
+<li>From that point on, the app can silently intercept SMS messages. So the malicious code in the browser can trigger a bank login, the bank will send an SMS code to the phone, the app will transmit it to the attacking code.</li>
+</ul>
+<p>Presto. You can log in without stealing someone's phone.</p>
+<p>For full details, see the FAQ and video above.</p>
+<h1>The Result</h1>
+<p>Someone who breaks into your browser doesn't need to steal your phone over the internet any more
+in order to log in as you.</p>
+<h1>The Google</h1>
+<p>Officially, Google has largely brushed off this concern. (See more details in the FAQ.) They claim it
+works as designed. We want this changed.</p>
+<h1>The Press</h1>
+<p>The <a href="http://www.volkskrant.nl/tech/lek-op-android-telefoons-door-beveiliging-google~a4089416/">Dutch national press</a> <a href="http://www.nu.nl/mobiel/4076742/onderzoekers-vu-ontdekken-lek-in-android-telefoons.html">was interested</a>, but we want more attention for this vulnerability in order to increase the pressure on Google.</p>
+<h1>The FAQ</h1>
+<p>For further information, please see more description and answers to common question <a href="http://www.few.vu.nl/~vvdveen/bandroid.html">in the FAQ</a> maintained by Victor.</p>
+        <hr class="divider-short"/>
+        <!-- Disqus goes here -->
+        <!-- <section>
+          <h1>Comments</h1>
+          <div id="disqus_thread" aria-live="polite">Disqus goes here</div>
+        </section>
+        -->
+      </div>
+    </div>
+  </div>
+</article>
+    <footer id="footer" class="her-row">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-1">
+            <a href="/"><h4>Home</h4></a>
+          </div>
+
+          <div class="col-md-2">
+            <div class="social-icon-list">
+
+
+
+            </div>
+          </div>
+          <div class="pull-right">
+            <h4>Powered by <a href="http://blog.getpelican.com/">Pelican</a>. Designed by <a href="http://AdrianArtiles.com">Adrian Artiles</a>.</h4>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
