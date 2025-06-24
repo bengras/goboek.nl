@@ -15,3 +15,4 @@ FEED_RSS = 'rss.xml'
 STATIC_PATHS = [ 'images' , 'files' ]
 LOCALE = ('nl_NL.UTF-8',)  # Use Dutch locale
 DISPLAY_PAGES_ON_MENU = True
+MENUITEMS = [('Home', '/'), ('About', '/about.html')]
